@@ -37,7 +37,7 @@ roles:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
   - name: backupTransaction
-    type: firebaseextensions.v1beta.function
+    type: firebaseextensions.v1beta.v2function
     description: >-
       HTTP request-triggered function that responds with a specified greeting message
     properties:
