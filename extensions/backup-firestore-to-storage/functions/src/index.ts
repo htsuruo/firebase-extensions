@@ -23,7 +23,7 @@ exports.backupFirestoreToStorage = https.onRequest(
     // (its value is provided by Firebase after installation)
     const instanceId = process.env.EXT_INSTANCE_ID
 
-    const greeting = `${consumerProvidedGreeting} everyone, from ${instanceId}2`
+    const greeting = `${consumerProvidedGreeting} everyone, from ${instanceId}`
     logger.info(greeting, { structuredData: true })
 
     res.send(greeting)
