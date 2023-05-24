@@ -18,6 +18,9 @@ exports.backupTransaction = pubsub
         outputUriPrefix: outputUriPrefix,
         collectionIds: process.env.COLLECTION_IDS?.split(','),
       })
+      logger.info(
+        `✅ Backup ${databaseName} to ${outputUriPrefix} successfully.`
+      )
     } catch (error) {
       logger.error(error)
     }

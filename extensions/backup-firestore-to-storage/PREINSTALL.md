@@ -7,10 +7,6 @@ Learn more about writing a PREINSTALL.md file in the docs:
 https://firebase.google.com/docs/extensions/publishers/user-documentation#writing-preinstall
 -->
 
-Use this extension to send a friendly greeting.
-
-When triggered by an HTTP request, this extension responds with your specified friendly greeting.
-
 <!-- We recommend keeping the following section to explain how billing for Firebase Extensions works -->
 # Billing
 
