@@ -1,7 +1,9 @@
 import { pubsub, logger } from 'firebase-functions/v1'
-import { storage } from 'firebase-admin'
+import { storage, initializeApp } from 'firebase-admin'
 import { v1 } from '@google-cloud/firestore'
 const client = new v1.FirestoreAdminClient()
+
+initializeApp()
 
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = pubsub
