@@ -10,22 +10,21 @@
 
 import { https, logger } from 'firebase-functions/v2'
 import { initializeApp } from 'firebase-admin'
+import * as firestore from '@google-cloud/firestore'
+const client = new firestore.v1.FirestoreAdminClient()
 
 initializeApp()
 
-exports.backupFirestoreToStorage = https.onRequest(
-  (req: https.Request, res) => {
-    // Here we reference a user-provided parameter
-    // (its value is provided by the user during installation)
-    const consumerProvidedGreeting = process.env.GREETING
+exports.backupTransaction = https.onRequest(async (req: https.Request, res) => {
+  const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT!
+  const bucketName = process.env.BUCKET_NAME ?? `${projectId}.appspot.com`
+  const result = await client.exportDocuments({
+    name: client.databasePath(projectId, '(default)'),
+    outputUriPrefix: `gs://${bucketName}/${process.env.OBJECT_PATH}`,
+    collectionIds: process.env.COLLECTION_IDS?.split(','),
+  })
 
-    // And here we reference an auto-populated parameter
-    // (its value is provided by Firebase after installation)
-    const instanceId = process.env.EXT_INSTANCE_ID
+  logger.info(result, { structuredData: true })
 
-    const greeting = `${consumerProvidedGreeting} everyone, from ${instanceId}`
-    logger.info(greeting, { structuredData: true })
-
-    res.send(greeting)
-  }
-)
+  res.sendStatus(200)
+})
