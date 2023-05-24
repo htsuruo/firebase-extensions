@@ -21,7 +21,7 @@ ${function:greetTheWorld.url}
 
 When triggered by an HTTP request, this extension responds with the following specified greeting: "${param:GREETING} World from ${param:EXT_INSTANCE_ID}".
 
-To learn more about HTTP functions, visit the [functions documentation](https://firebase.google.com/docs/functions/http-events).
+To learn more about Schedule functions, visit the [Schedule functions](https://firebase.google.com/docs/functions/schedule-functions?gen=2nd).
 
 <!-- We recommend keeping the following section to explain how to monitor extensions with Firebase -->
 # Monitoring
