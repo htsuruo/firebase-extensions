@@ -17,13 +17,15 @@ exports.backupTransaction = https.onRequest(async (req: https.Request, res) => {
   const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT!
   const outputUriPrefix = `gs://${process.env.BUCKET_NAME}/${process.env.PATH}`
   const databaseName = client.databasePath(projectId, '(default)')
-  const result = await client.exportDocuments({
-    name: databaseName,
-    outputUriPrefix: outputUriPrefix,
-    collectionIds: process.env.COLLECTION_IDS?.split(','),
-  })
-
-  logger.info(result, { structuredData: true })
-
-  res.sendStatus(200)
+  try {
+    await client.exportDocuments({
+      name: databaseName,
+      outputUriPrefix: outputUriPrefix,
+      collectionIds: process.env.COLLECTION_IDS?.split(','),
+    })
+    res.sendStatus(200)
+  } catch (error) {
+    logger.error(error)
+    res.sendStatus(500)
+  }
 })
