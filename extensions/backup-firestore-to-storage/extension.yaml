@@ -82,7 +82,7 @@ params:
     label: Schedule
     description: How often do you want to run backupTransaction()?
     type: string
-    default: every day 00:00
+    default: 'every day 00:00'
     required: true
 
   - param: LOCATION
