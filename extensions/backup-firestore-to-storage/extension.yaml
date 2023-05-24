@@ -23,21 +23,14 @@ author:
   email: tsuru.dev@gmail.com
   url: https://github.com/HTsuruo
 
-# In an `apis` field, list any Google APIs (like Cloud Translation, BigQuery, etc.)
-# required for your extension to operate.
-# Learn more in the docs:
-# https://firebase.google.com/docs/extensions/reference/extension-yaml#apis-field
-apis:
-  - apiName: firestore.googleapis.com
-    reason: Use to export documents api
-
 # In a `roles` field, list any IAM access roles required for your extension to operate.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#roles-field
 roles:
+  - role: datastore.importExportAdmin
+    reason: Allows the extension to export Firestore documents data.
   - role: storage.admin
-    resource: projects/${project_id}/*
-    reason: Allows the extension to upload Firestore documents data to Cloud Storage.
+    reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.
 
 # In the `resources` field, list each of your extension's functions, including the trigger for each function.
 # Learn more in the docs:
@@ -56,15 +49,15 @@ resources:
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
-  - param: GREETING
-    label: Greeting for the world
-    description: >-
-      What do you want to say to the world?
-      For example, Hello world? or What's up, world?
+  - param: BUCKET_NAME
+    label: bucket name for Cloud Storage
     type: string
-    default: Hello
     required: true
-    immutable: false
+
+  - param: COLLECTION_IDS
+    label: collection name list(separated by ',') for Firestore
+    type: string
+    required: true
 
   - param: LOCATION
     label: Cloud Functions location
