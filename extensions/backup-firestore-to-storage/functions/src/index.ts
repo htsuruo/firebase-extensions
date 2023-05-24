@@ -15,11 +15,11 @@ const client = new firestore.v1.FirestoreAdminClient()
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = https.onRequest(async (req: https.Request, res) => {
   const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT!
-  const bucketName = process.env.BUCKET_NAME ?? `${projectId}.appspot.com`
+  const outputUriPrefix = `gs://${process.env.BUCKET_NAME}/${process.env.PATH}`
   const databaseName = client.databasePath(projectId, '(default)')
   const result = await client.exportDocuments({
     name: databaseName,
-    outputUriPrefix: `gs://${bucketName}/${process.env.OBJECT_PATH}`,
+    outputUriPrefix: outputUriPrefix,
     collectionIds: process.env.COLLECTION_IDS?.split(','),
   })
 
