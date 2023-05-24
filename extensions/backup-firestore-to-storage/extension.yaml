@@ -15,11 +15,16 @@ description: >-
 license: Apache-2.0 # https://spdx.org/licenses/
 
 # Public URL for the source code of your extension
-sourceUrl: https://github.com/firebase/firebase-tools/tree/master/templates/extensions
+sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
 
 # Specify whether a paid-tier billing plan is required to use your extension.
 # Learn more in the docs: https://firebase.google.com/docs/extensions/reference/extension-yaml#billing-required-field
 billingRequired: false
+
+author:
+  authorName: Hideki Tsuruoka
+  email: tsuru.dev@gmail.com
+  url: https://github.com/HTsuruo
 
 # In an `apis` field, list any Google APIs (like Cloud Translation, BigQuery, etc.)
 # required for your extension to operate.
@@ -34,7 +39,7 @@ billingRequired: false
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
-  - name: greetTheWorld
+  - name: backupFirestoreToStorage
     type: firebaseextensions.v1beta.function
     description: >-
       HTTP request-triggered function that responds with a specified greeting message

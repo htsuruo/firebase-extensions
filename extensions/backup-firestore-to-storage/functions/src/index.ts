@@ -8,10 +8,13 @@
  * https://firebase.google.com/docs/extensions/publishers
  */
 
-import * as functions from 'firebase-functions'
+import { https, logger } from 'firebase-functions/v2'
+import { initializeApp } from 'firebase-admin'
 
-exports.greetTheWorld = functions.https.onRequest(
-  (req: functions.Request, res: functions.Response) => {
+initializeApp()
+
+exports.backupFirestoreToStorage = https.onRequest(
+  (req: https.Request, res) => {
     // Here we reference a user-provided parameter
     // (its value is provided by the user during installation)
     const consumerProvidedGreeting = process.env.GREETING
@@ -21,6 +24,7 @@ exports.greetTheWorld = functions.https.onRequest(
     const instanceId = process.env.EXT_INSTANCE_ID
 
     const greeting = `${consumerProvidedGreeting} everyone, from ${instanceId}`
+    logger.info(greeting, { structuredData: true })
 
     res.send(greeting)
   }
