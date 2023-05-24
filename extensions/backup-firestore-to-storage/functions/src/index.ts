@@ -1,17 +1,7 @@
-/*
- * This template contains a HTTP function that responds
- * with a greeting when called
- *
- * Reference PARAMETERS in your functions code with:
- * `process.env.<parameter-name>`
- * Learn more about building extensions in the docs:
- * https://firebase.google.com/docs/extensions/publishers
- */
-
 import { https, logger } from 'firebase-functions/v2'
 import { storage } from 'firebase-admin'
-import * as firestore from '@google-cloud/firestore'
-const client = new firestore.v1.FirestoreAdminClient()
+import { v1 } from '@google-cloud/firestore'
+const client = new v1.FirestoreAdminClient()
 
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = https.onRequest(async (req: https.Request, res) => {
