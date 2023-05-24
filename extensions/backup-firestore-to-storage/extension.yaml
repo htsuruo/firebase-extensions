@@ -50,12 +50,17 @@ resources:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
   - param: BUCKET_NAME
-    label: bucket name for Cloud Storage
+    label: Cloud Storage bucket
     type: string
     required: true
 
+  - param: PATH
+    label: Cloud Storage paths
+    type: string
+    required: false
+
   - param: COLLECTION_IDS
-    label: collection name list(separated by ',') for Firestore
+    label: Firestore collection ids (separated by ',')
     type: string
     required: true
 
