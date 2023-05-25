@@ -2,20 +2,17 @@ name: back-up-firestore-to-storage
 version: 0.0.1
 specVersion: v1beta
 
-# Friendly display name for your extension (~3-5 words)
+#  (~3-5 words)
 displayName: Back up firestore to storage
 
-# Brief description of the task your extension performs (~1 sentence)
+#  (~1 sentence)
 description: >-
   Back up Firestore documents to Cloud Storage in batch processing at the specified time.
 
-license: Apache-2.0 # https://spdx.org/licenses/
+license: Apache-2.0
 
-# Public URL for the source code of your extension
 sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
 
-# Specify whether a paid-tier billing plan is required to use your extension.
-# Learn more in the docs: https://firebase.google.com/docs/extensions/reference/extension-yaml#billing-required-field
 billingRequired: false
 
 author:
@@ -59,8 +56,6 @@ resources:
 #       buildConfig.runtime: nodejs18
 #       serviceConfig.timeoutSeconds: 540
 
-# In the `params` field, set up your extension's user-configured parameters.
-# Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
   - param: BUCKET_NAME
