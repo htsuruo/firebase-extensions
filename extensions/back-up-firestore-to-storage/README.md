@@ -1,4 +1,4 @@
-# Scheduled Firestore to Storage Export
+# Back up Firestore to Storage
 
 **Author**: Hideki Tsuruoka - [HTsuruo](https://github.com/HTsuruo)
 
