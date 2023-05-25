@@ -1,13 +1,13 @@
-name: backup-firestore-to-storage
+name: back-up-firestore-to-storage
 version: 0.0.1
 specVersion: v1beta
 
 # Friendly display name for your extension (~3-5 words)
-displayName: Backup Firestore to Storage
+displayName: Back up Firestore to Storage
 
 # Brief description of the task your extension performs (~1 sentence)
 description: >-
-  Backup Firestore documents to Cloud Storage in batch processing at the specified time.
+  Back up Firestore documents to Cloud Storage in batch processing at the specified time.
 
 license: Apache-2.0 # https://spdx.org/licenses/
 
