@@ -36,7 +36,7 @@ resources:
   - name: createNewFatalIssue
     type: firebaseextensions.v1beta.v2function
     description: >-
-      Crashlytics new fatal issue triggered function that creates GitHub Issues.
+      New crashlytics fatal issue triggered function that creates GitHub Issues.
     properties:
       buildConfig:
         runtime: nodejs18
@@ -58,32 +58,25 @@ params:
     label: GitHub access token for your repository
     description: >-
       Use PAT(Personal Access Token) or GitHub Apps
-    type: string
+    type: secret
     default: github_pat_xxx
-    required: true
-    immutable: false
 
   - param: OWNER_NAME
     label: The owner or organization name for your repository
     type: string
-    required: true
-    immutable: false
 
   - param: REPO_NAME
     label: The name of your repository for creating issues
     type: string
-    required: true
-    immutable: false
 
   - param: LABELS
-    label: Labels to associate with this issue.
+    label: Labels to associate with the issue
     description: >-
-      The param requires array format(ex: ["bug"]).
+      The param requires array format
       Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
     type: string
-    default: ['crashlytics', 'bug']
+    example: ['crashlytics', 'bug']
     required: false
-    immutable: false
 
   - param: LOCATION
     label: Cloud Functions location
@@ -133,5 +126,4 @@ params:
         value: southamerica-east1
       - label: Sydney (australia-southeast1)
         value: australia-southeast1
-    required: true
     immutable: true
