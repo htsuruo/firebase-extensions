@@ -33,7 +33,7 @@ externalServices:
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
-  - name: createNewFatalIssue
+  - name: createFatalIssue
     type: firebaseextensions.v1beta.v2function
     description: >-
       New crashlytics fatal issue triggered function that creates GitHub Issues.
@@ -48,6 +48,22 @@ resources:
       eventFilters:
         - attribute: alerttype
           value: crashlytics.newFatalIssue
+
+  - name: createNonFatalIssue
+    type: firebaseextensions.v1beta.v2function
+    description: >-
+      New crashlytics non-fatal issue triggered function that creates GitHub Issues.
+    properties:
+      buildConfig:
+        runtime: nodejs18
+      serviceConfig:
+        availableMemory: 512M
+      location: ${LOCATION}
+    eventTrigger:
+      eventType: google.firebase.firebasealerts.alerts.v1.published
+      eventFilters:
+        - attribute: alerttype
+          value: crashlytics.newNonfatalIssue
 
 # In the `params` field, set up your extension's user-configured parameters.
 # Learn more in the docs:
@@ -79,6 +95,16 @@ params:
     type: string
     example: bug,crashlytics
     required: false
+
+  - param: ALERTS
+    label: The selection of alert type you want to trigger
+    type: multiSelect
+    required: true
+    options:
+      - label: Fatal alert
+        value: fatal
+      - label: Non-Fatal alert
+        value: nonFatal
 
   - param: LOCATION
     label: Cloud Functions location
