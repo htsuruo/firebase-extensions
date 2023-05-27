@@ -14,14 +14,19 @@ https://firebase.google.com/docs/extensions/publishers/user-documentation#writin
 
 You can test out this extension right away!
 
-Visit the following URL:
-${function:greetTheWorld.url}
+1. Force a crash to test your implementation
+    - ref. [Test your Crashlytics implementation  |  Firebase Crashlytics](https://firebase.google.com/docs/crashlytics/test-implementation?platform=flutter)
+
+1. Access the your repository issues page to confirm that the issue has been created.
+    - https://github.com/"${param:OWNER_NAME}"/"${param:REPO_NAME}"/issues
 
 # Using the extension
 
-When triggered by an HTTP request, this extension responds with the following specified greeting: "${param:GREETING} World from ${param:EXT_INSTANCE_ID}".
+When triggered by an new Crashlytics fatal issue, this extension creates an GitHub issue the following specified URL:
 
-To learn more about HTTP functions, visit the [functions documentation](https://firebase.google.com/docs/functions/http-events).
+https://github.com/"${param:OWNER_NAME}"/"${param:REPO_NAME}"/issues
+
+To learn more about Firebase Alerts triggers, visit the [functions documentation](https://firebase.google.com/docs/functions/alert-events).
 
 <!-- We recommend keeping the following section to explain how to monitor extensions with Firebase -->
 # Monitoring
