@@ -6,51 +6,82 @@ specVersion: v1beta
 
 displayName: Create GitHub Issues from Crashlytics
 description: >-
-  Automatically create GitHub Issues based on Crashlytics reports.
+  Automatically creates GitHub Issues triggered by new Crashlytics fatal issues.
 
 license: Apache-2.0
-sourceUrl: https://github.com/firebase/firebase-tools/tree/master/templates/extensions
+sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/create-github-issues-from-crashlytics
 
-# Specify whether a paid-tier billing plan is required to use your extension.
-# Learn more in the docs: https://firebase.google.com/docs/extensions/reference/extension-yaml#billing-required-field
 billingRequired: false
 
-# In an `apis` field, list any Google APIs (like Cloud Translation, BigQuery, etc.)
-# required for your extension to operate.
-# Learn more in the docs:
-# https://firebase.google.com/docs/extensions/reference/extension-yaml#apis-field
+author:
+  authorName: Hideki TSURUOKA
+  email: tsuru.dev@gmail.com
+  url: https://github.com/HTsuruo
 
 # In a `roles` field, list any IAM access roles required for your extension to operate.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#roles-field
+roles:
+  - role: firebasecrashlytics.viewer
+  - reason: Allows the extension to read Crashlytics reports.
+
+externalServices:
+  - name: GitHub API
+    pricingUri: https://github.com/pricing
 
 # In the `resources` field, list each of your extension's functions, including the trigger for each function.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
-  - name: greetTheWorld
-    type: firebaseextensions.v1beta.function
+  - name: createNewFatalIssue
+    type: firebaseextensions.v1beta.v2function
     description: >-
-      HTTP request-triggered function that responds with a specified greeting message
+      Crashlytics new fatal issue triggered function that creates GitHub Issues.
     properties:
-      # LOCATION is a user-configured parameter value specified by the user during installation.
+      buildConfig:
+        runtime: nodejs18
+      serviceConfig:
+        availableMemory: 512M
       location: ${LOCATION}
-      # httpsTrigger is used for an HTTP triggered function.
-      httpsTrigger: {}
-      runtime: 'nodejs16'
+    eventTrigger:
+      eventType: google.firebase.firebasealerts.alerts.v1.published
+      triggerRegion: global
+      eventFilters:
+        - attribute: alerttype
+          value: crashlytics.newFatalIssue
 
 # In the `params` field, set up your extension's user-configured parameters.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
-  - param: GREETING
-    label: Greeting for the world
+  - param: GITHUB_ACCESS_TOKEN
+    label: GitHub access token for your repository
     description: >-
-      What do you want to say to the world?
-      For example, Hello world? or What's up, world?
+      Use PAT(Personal Access Token) or GitHub Apps
     type: string
-    default: Hello
+    default: github_pat_xxx
     required: true
+    immutable: false
+
+  - param: OWNER_NAME
+    label: The owner or organization name for your repository
+    type: string
+    required: true
+    immutable: false
+
+  - param: REPO_NAME
+    label: The name of your repository for creating issues
+    type: string
+    required: true
+    immutable: false
+
+  - param: LABELS
+    label: Labels to associate with this issue.
+    description: >-
+      Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
+    type: string
+    default: ['crashlytics', 'bug']
+    required: false
     immutable: false
 
   - param: LOCATION

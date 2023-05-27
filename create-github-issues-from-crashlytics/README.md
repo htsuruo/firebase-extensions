@@ -1,8 +1,8 @@
-# Create GitHub Issue on Crashlytics
+# Create GitHub Issues on Crashlytics
 
-**Author**: Hideki Tsuruoka - [HTsuruo](https://github.com/HTsuruo)
+**Author**: Hideki TSURUOKA - [HTsuruo](https://github.com/HTsuruo)
 
-**Description**: Exports Firestore documents to Cloud Storage at any scheduled time.
+**Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal issues.
 
 **Details**: By using this extension, export selected Firestore documents to Cloud Storage at any scheduled time. And also, it depends on Google API's [exportDocuments](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases/exportDocuments).
 

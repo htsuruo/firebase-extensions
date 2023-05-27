@@ -1,6 +1,6 @@
 # Back up Firestore to Storage
 
-**Author**: Hideki Tsuruoka - [HTsuruo](https://github.com/HTsuruo)
+**Author**: Hideki TSURUOKA - [HTsuruo](https://github.com/HTsuruo)
 
 **Description**: Exports Firestore documents to Cloud Storage at any scheduled time.
 
