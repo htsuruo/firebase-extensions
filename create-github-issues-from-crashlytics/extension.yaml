@@ -1,10 +1,10 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
-name: create-github-issue-from-crashlytics
+name: create-github-issues-from-crashlytics
 version: 0.0.1
 specVersion: v1beta
 
-displayName: Create GitHub Issue from Crashlytics
+displayName: Create GitHub Issues from Crashlytics
 description: >-
   Automatically create GitHub Issues based on Crashlytics reports.
 
