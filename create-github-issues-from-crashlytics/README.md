@@ -4,7 +4,7 @@
 
 **Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal issues.
 
-**Details**: By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics fatal issues.
+**Details**:
 
 The features of this extension are as follows:
 
@@ -43,7 +43,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 - The name of your repository for creating issues
 
-- Labels to associate with the issue: The param requires array format Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
+- Labels to associate with the issue: The param requires camma(,) separated format Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
 
 - Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 
@@ -55,24 +55,4 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 This extension will operate with the following project IAM roles:
 
-- firebasecrashlytics.viewer
-
-- undefined (Reason: Allows the extension to read Crashlytics reports.)
-
-## 🧩 Install this extension
-
-### Console
-
-[![Install this extension in your Firebase project](https://www.gstatic.com/mobilesdk/210513_mobilesdk/install-extension.png "Install this extension in your Firebase project")][install-link]
-
-[install-link]: https://console.firebase.google.com/project/_/extensions/install?ref=publisher_id/extension_name
-
-### Firebase CLI
-
-```bash
-firebase ext:install publisher_id/extension_name --project=[your-project-id]
-```
-
-> Learn more about installing extensions in the Firebase Extensions documentation:
-> [console](https://firebase.google.com/docs/extensions/install-extensions?platform=console),
-> [CLI](https://firebase.google.com/docs/extensions/install-extensions?platform=cli)
+- firebasecrashlytics.viewer (Reason: Allows the extension to read Crashlytics reports.)

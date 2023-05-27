@@ -72,10 +72,10 @@ params:
   - param: LABELS
     label: Labels to associate with the issue
     description: >-
-      The param requires array format
+      The param requires camma(,) separated format
       Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
     type: string
-    example: ['crashlytics', 'bug']
+    example: bug,crashlytics
     required: false
 
   - param: LOCATION
