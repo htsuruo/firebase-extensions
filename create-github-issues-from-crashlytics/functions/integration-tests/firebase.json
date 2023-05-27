@@ -3,12 +3,15 @@
     "functions": {
       "port": 5001
     },
+    "eventarc": {
+      "port": 9299
+    },
     "ui": {
       "enabled": true
     },
     "singleProjectMode": true
   },
   "extensions": {
-    "greet-the-world": "../.."
+    "create-github-issues-from-crashlytics": "../.."
   }
 }
