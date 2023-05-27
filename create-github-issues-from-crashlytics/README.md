@@ -2,9 +2,9 @@
 
 **Author**: Hideki TSURUOKA (**[HTsuruo](https://github.com/HTsuruo)**)
 
-**Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal issues.
+**Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal/non-fatal issues.
 
-**Details**:
+**Details**: By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics fatal issues.
 
 The features of this extension are as follows:
 
@@ -37,7 +37,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-- GitHub access token for your repository: Use PAT(Personal Access Token) or GitHub Apps
+- GitHub access token for your repository: Use PAT(Personal Access Token) or GitHub Apps Token
 
 - The owner or organization name for your repository
 
@@ -45,11 +45,15 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 - Labels to associate with the issue: The param requires camma(,) separated format Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
 
+- The selection of alert type you want to trigger
+
 - Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 
 **Other Resources**:
 
-- createNewFatalIssue (firebaseextensions.v1beta.v2function)
+- createFatalIssue (firebaseextensions.v1beta.v2function)
+
+- createNonFatalIssue (firebaseextensions.v1beta.v2function)
 
 **Access Required**:
 
