@@ -6,7 +6,7 @@ specVersion: v1beta
 
 displayName: Create GitHub Issues from Crashlytics
 description: >-
-  Automatically creates GitHub Issues triggered by new Crashlytics fatal issues.
+  Automatically creates GitHub Issues triggered by new Crashlytics fatal/non-fatal issues.
 
 license: Apache-2.0
 sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/create-github-issues-from-crashlytics
@@ -45,7 +45,6 @@ resources:
       location: ${LOCATION}
     eventTrigger:
       eventType: google.firebase.firebasealerts.alerts.v1.published
-      triggerRegion: global
       eventFilters:
         - attribute: alerttype
           value: crashlytics.newFatalIssue
