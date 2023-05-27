@@ -57,16 +57,19 @@ params:
   - param: GITHUB_ACCESS_TOKEN
     label: GitHub access token for your repository
     description: >-
-      Use PAT(Personal Access Token) or GitHub Apps
+      Use PAT(Personal Access Token) or GitHub Apps Token
     type: secret
+    required: true
     default: github_pat_xxx
 
   - param: OWNER_NAME
     label: The owner or organization name for your repository
+    required: true
     type: string
 
   - param: REPO_NAME
     label: The name of your repository for creating issues
+    required: true
     type: string
 
   - param: LABELS
@@ -126,4 +129,5 @@ params:
         value: southamerica-east1
       - label: Sydney (australia-southeast1)
         value: australia-southeast1
+    required: true
     immutable: true
