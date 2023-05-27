@@ -78,6 +78,7 @@ params:
   - param: LABELS
     label: Labels to associate with this issue.
     description: >-
+      The param requires array format(ex: ["bug"]).
       Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
     type: string
     default: ['crashlytics', 'bug']
