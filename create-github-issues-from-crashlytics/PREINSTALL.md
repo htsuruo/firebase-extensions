@@ -18,6 +18,18 @@ The features of this extension are as follows:
 
 **This extension helps to simplify the construction of the contents described in the [Firebase Alerts triggers](https://firebase.google.com/docs/functions/alert-events#handle-crashlytics-alerts) section of the official documentation. There's no need for creating service accounts or setting up Cloud Functions. Simply install the extension and it's all done with a single click.**
 
+## Supported crashlytics alerts
+
+- `crashlytics.newFatalIssue`: An event is sent when an application experiences a new fatal crash (not for any subsequent, identical events).
+- `crashlytics.newNonfatalIssue`: An event is sent when an application experiences a new non-fatal error (not for any subsequent, identical events).
+
+### Not supported (Future Works)
+
+- `crashlytics.newAnrIssue`: An event is sent when an application experiences a new Application Not Responding (ANR) error (not for any subsequent, identical events).
+- `crashlytics.regression`: An event is sent when an application experiences a crash for an issue marked as closed for a previous application version.
+- `crashlytics.stabilityDigest`: An event is sent when there is a notification of the top trending issues in Crashlytics.
+- `crashlytics.velocity`: An event is sent when a single issue is responsible for causing a significant number of application sessions to crash.
+
 ## Additional setup
 
 Before installing this extension, make sure that you've [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your GitHub account to access GitHub API（if your repository is organization, use GitHub Apps）. Two approach exists, but `Fine-grained personal access tokens` is recommended.
