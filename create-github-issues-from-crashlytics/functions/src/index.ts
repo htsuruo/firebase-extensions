@@ -6,6 +6,7 @@ import {
   onNewNonfatalIssuePublished,
 } from 'firebase-functions/v2/alerts/crashlytics'
 import { options, ownerRepo, labels } from './config'
+import { CrashlyticsAlert } from './crashlytics_alert'
 
 exports.createFatalIssue = onNewFatalIssuePublished(options, (event) => {
   logger.info(`ownerRepo: ${ownerRepo}, labels: ${labels}`)
@@ -22,7 +23,9 @@ exports.createNonFatalIssue = onNewNonfatalIssuePublished(options, (event) => {
   logger.info(`ownerRepo: ${ownerRepo}, labels: ${labels}`)
   const appId = event.appId
   const source = event.source
+  const alertType = event.alertType.split('.').at(-1) as CrashlyticsAlert
   logger.info(`appId: ${appId}`)
   logger.info(`source: ${source}`)
+  logger.info(`alertType: ${alertType}`)
   logger.info(event.data.payload.issue, { structuredData: true })
 })
