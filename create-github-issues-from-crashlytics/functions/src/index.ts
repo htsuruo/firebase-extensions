@@ -1,4 +1,5 @@
-// ref. https://firebase.google.com/docs/functions/beta/custom-events?hl=ja#handle-events
+// ref. https://firebase.google.com/docs/functions/alert-events#node.js
+// ref. https://firebase.google.com/docs/extensions/publishers/functions#crashlytics
 import { logger } from 'firebase-functions/v2'
 import {
   onNewFatalIssuePublished,
