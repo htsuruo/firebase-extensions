@@ -29,12 +29,6 @@ externalServices:
   - name: GitHub API
     pricingUri: https://github.com/pricing
 
-apis:
-  - apiName: eventarc.googleapis.com
-    reason: Powers all events and triggers
-  - apiName: run.googleapis.com
-    reason: Powers 2nd-gen functions
-
 # In the `resources` field, list each of your extension's functions, including the trigger for each function.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
