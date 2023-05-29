@@ -5,14 +5,7 @@ import {
   onNewFatalIssuePublished,
   onNewNonfatalIssuePublished,
 } from 'firebase-functions/v2/alerts/crashlytics'
-
-const options = {
-  region: process.env.LOCATION,
-  secrets: ['GITHUB_ACCESS_TOKEN'],
-}
-
-const ownerRepo = `${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}`
-const labels = `${process.env.GITHUB_LABELS}`
+import { options, ownerRepo, labels } from './config'
 
 exports.createFatalIssue = onNewFatalIssuePublished(options, (event) => {
   logger.info(`ownerRepo: ${ownerRepo}, labels: ${labels}`)
@@ -28,6 +21,8 @@ exports.createFatalIssue = onNewFatalIssuePublished(options, (event) => {
 exports.createNonFatalIssue = onNewNonfatalIssuePublished(options, (event) => {
   logger.info(`ownerRepo: ${ownerRepo}, labels: ${labels}`)
   const appId = event.appId
+  const source = event.source
   logger.info(`appId: ${appId}`)
+  logger.info(`source: ${source}`)
   logger.info(event.data.payload.issue, { structuredData: true })
 })
