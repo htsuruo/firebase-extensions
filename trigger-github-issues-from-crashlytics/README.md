@@ -1,4 +1,4 @@
-# Trigger GitHub issues from Crashlytics alerts
+# Trigger GitHub issues from Crashlytics
 
 **Author**: Hideki TSURUOKA (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
 

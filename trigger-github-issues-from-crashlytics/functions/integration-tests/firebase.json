@@ -12,6 +12,6 @@
     "singleProjectMode": true
   },
   "extensions": {
-    "trigger-github-issues-from-crashlytics-alerts": "../.."
+    "trigger-github-issues-from-crashlytics": "../.."
   }
 }
