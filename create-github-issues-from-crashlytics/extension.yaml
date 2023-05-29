@@ -30,6 +30,8 @@ apis:
 roles:
   - role: firebasecrashlytics.viewer
     reason: Allows the extension to read Crashlytics reports.
+  - role: eventarc.eventReceiver
+    reason: Allows the extension to trigger on alerts.
 
 externalServices:
   - name: GitHub API
