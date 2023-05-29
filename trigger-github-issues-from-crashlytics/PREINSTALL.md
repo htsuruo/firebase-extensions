@@ -18,6 +18,10 @@ The features of this extension are as follows:
 
 **This extension helps to simplify the construction of the contents described in the [Firebase Alerts triggers](https://firebase.google.com/docs/functions/alert-events#handle-crashlytics-alerts) section of the official documentation. There's no need for creating service accounts or setting up Cloud Functions. Simply install the extension and it's all done with a single click.**
 
+| Crashlytics Issue | GitHub Issue |
+|--------|--------|
+| <img width="900" alt="SCR-20230529-ukgw-2" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/d019c106-a2c2-4b76-b5f9-2327609fe3a0"> | <img width="970" alt="SCR-20230529-ukml" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/8eafcf03-a285-4067-b56f-36e378747758"> |
+
 ## Supported crashlytics alerts
 
 - `crashlytics.newFatalIssue`: An event is sent when an application experiences a new fatal crash (not for any subsequent, identical events).
