@@ -48,5 +48,7 @@
     },
     "singleProjectMode": true
   },
-  "extensions": {}
+  "extensions": {
+    "create-github-issues-from-crashlytics": "../create-github-issues-from-crashlytics"
+  }
 }

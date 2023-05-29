@@ -1,5 +1,13 @@
 {
   "projects": {
-    "default": "h-tsuruo"
+    "default": "playground-c8a87"
+  },
+  "targets": {},
+  "etags": {
+    "playground-c8a87": {
+      "extensionInstances": {
+        "create-github-issues-from-crashlytics": "71b8923d4395830a45908f13c8f6f19c1cb8c04a71cc20a29aac97676e6d5353"
+      }
+    }
   }
 }
