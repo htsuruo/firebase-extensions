@@ -5,7 +5,6 @@ import {
   onNewFatalIssuePublished,
   onNewNonfatalIssuePublished,
 } from 'firebase-functions/v2/alerts/crashlytics'
-import { CrashlyticsAlert } from './crashlytics_alert'
 import { createGitHubIssue } from './github_api'
 
 const options: CrashlyticsOptions = {
@@ -14,11 +13,8 @@ const options: CrashlyticsOptions = {
 }
 
 exports.createFatalIssue = onNewFatalIssuePublished(options, async (event) => {
-  const appId = event.appId
-  const alertType = event.alertType.split('.').at(-1) as CrashlyticsAlert
   await createGitHubIssue({
-    appId,
-    alertType,
+    event,
     issue: event.data.payload.issue,
   })
 })
@@ -26,11 +22,8 @@ exports.createFatalIssue = onNewFatalIssuePublished(options, async (event) => {
 exports.createNonFatalIssue = onNewNonfatalIssuePublished(
   options,
   async (event) => {
-    const appId = event.appId
-    const alertType = event.alertType.split('.').at(-1) as CrashlyticsAlert
     await createGitHubIssue({
-      appId,
-      alertType,
+      event,
       issue: event.data.payload.issue,
     })
   }

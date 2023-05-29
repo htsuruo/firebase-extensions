@@ -1,21 +1,23 @@
 import { Octokit } from '@octokit/rest'
 import { RequestError } from '@octokit/request-error'
-import { Issue } from 'firebase-functions/v2/alerts/crashlytics'
-import { CrashlyticsAlert } from './crashlytics_alert'
+import {
+  CrashlyticsEvent,
+  Issue,
+} from 'firebase-functions/v2/alerts/crashlytics'
 import { logger } from 'firebase-functions/v2'
+import { CrashlyticsAlert } from './crashlytics_alert'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_ACCESS_TOKEN,
 })
 
-type CrashlyticsInfo = {
-  appId: string
-  alertType: CrashlyticsAlert
+type CrashlyticsInfo<T> = {
+  event: CrashlyticsEvent<T>
   issue: Issue
 }
 
 // ref. https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue
-export async function createGitHubIssue(info: CrashlyticsInfo) {
+export async function createGitHubIssue<T>(info: CrashlyticsInfo<T>) {
   try {
     await octokit.rest.issues.create({
       owner: process.env.GITHUB_OWNER!,
@@ -38,9 +40,11 @@ export async function createGitHubIssue(info: CrashlyticsInfo) {
   }
 }
 
-function makeBody(info: CrashlyticsInfo) {
-  const { appId, alertType, issue } = info
-  logger.info(issue, { structuredData: true })
+function makeBody<T>(info: CrashlyticsInfo<T>) {
+  const { event, issue } = info
+  logger.info(event, { structuredData: true })
+  const appId = event.appId
+  const alertType = event.alertType.split('.').at(-1) as CrashlyticsAlert
   return `
     ## ${issue.title}
     | Header | Header |
