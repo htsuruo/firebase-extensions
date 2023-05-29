@@ -87,17 +87,17 @@ params:
     required: true
     default: github_pat_xxx
 
-  - param: OWNER_NAME
+  - param: GITHUB_OWNER
     label: The owner or organization name for your repository
     required: true
     type: string
 
-  - param: REPO_NAME
+  - param: GITHUB_REPO
     label: The name of your repository for creating issues
     required: true
     type: string
 
-  - param: LABELS
+  - param: GITHUB_LABELS
     label: Labels to associate with the issue
     description: >-
       The param requires camma(,) separated format
