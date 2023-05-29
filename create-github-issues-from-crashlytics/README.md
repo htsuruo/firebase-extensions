@@ -4,9 +4,7 @@
 
 **Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal/non-fatal issues.
 
-**Details**:
-
-By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics fatal issues.
+**Details**: By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics fatal issues.
 
 The features of this extension are as follows:
 
@@ -17,7 +15,7 @@ The features of this extension are as follows:
 
 **This extension helps to simplify the construction of the contents described in the [Firebase Alerts triggers](https://firebase.google.com/docs/functions/alert-events#handle-crashlytics-alerts) section of the official documentation. There's no need for creating service accounts or setting up Cloud Functions. Simply install the extension and it's all done with a single click.**
 
-## Supported alerts
+## Supported crashlytics alerts
 
 - `crashlytics.newFatalIssue`: An event is sent when an application experiences a new fatal crash (not for any subsequent, identical events).
 - `crashlytics.newNonfatalIssue`: An event is sent when an application experiences a new non-fatal error (not for any subsequent, identical events).
@@ -68,6 +66,12 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 - createFatalIssue (firebaseextensions.v1beta.v2function)
 
 - createNonFatalIssue (firebaseextensions.v1beta.v2function)
+
+**APIs Used**:
+
+- eventarc.googleapis.com (Reason: Powers all events and triggers)
+
+- run.googleapis.com (Reason: Powers 2nd-gen functions)
 
 **Access Required**:
 
