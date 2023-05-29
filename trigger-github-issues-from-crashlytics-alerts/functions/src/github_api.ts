@@ -17,7 +17,7 @@ type CrashlyticsInfo<T> = {
 }
 
 // ref. https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue
-export async function createGitHubIssue<T>(info: CrashlyticsInfo<T>) {
+export async function createGitHubIssueIfEnabled<T>(info: CrashlyticsInfo<T>) {
   const alertType = info.event.alertType.split('.').at(-1) as CrashlyticsAlert
   if (!process.env.ALERTS?.split(',').includes(alertType)) {
     logger.info(

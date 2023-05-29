@@ -6,7 +6,7 @@ import {
   onNewNonfatalIssuePublished,
   onNewAnrIssuePublished,
 } from 'firebase-functions/v2/alerts/crashlytics'
-import { createGitHubIssue } from './github_api'
+import { createGitHubIssueIfEnabled } from './github_api'
 
 const options: CrashlyticsOptions = {
   region: process.env.LOCATION,
@@ -14,7 +14,7 @@ const options: CrashlyticsOptions = {
 }
 
 exports.createFatalIssue = onNewFatalIssuePublished(options, async (event) => {
-  await createGitHubIssue({
+  await createGitHubIssueIfEnabled({
     event,
     issue: event.data.payload.issue,
   })
@@ -23,7 +23,7 @@ exports.createFatalIssue = onNewFatalIssuePublished(options, async (event) => {
 exports.createNonFatalIssue = onNewNonfatalIssuePublished(
   options,
   async (event) => {
-    await createGitHubIssue({
+    await createGitHubIssueIfEnabled({
       event,
       issue: event.data.payload.issue,
     })
@@ -31,7 +31,7 @@ exports.createNonFatalIssue = onNewNonfatalIssuePublished(
 )
 
 exports.createAnrIssue = onNewAnrIssuePublished(options, async (event) => {
-  await createGitHubIssue({
+  await createGitHubIssueIfEnabled({
     event,
     issue: event.data.payload.issue,
   })
