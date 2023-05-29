@@ -53,12 +53,13 @@ function makeBody<T>(info: CrashlyticsInfo<T>, alertType: CrashlyticsAlert) {
   logger.info(event, { structuredData: true })
   const appId = event.appId
   return `
-    ## ${issue.title}
-    | Header | Header |
-    |--------|--------|
-    | appId | ${appId} |
-    | alertType | ${alertType} |
-    | id | ${issue.id} |
-    | appVersion | ${issue.appVersion} |
-    `
+  ### ${issue.subtitle}
+
+  | Info | Value |
+  |--------|--------|
+  | appId | ${appId} |
+  | alertType | ${alertType} |
+  | id | ${issue.id} |
+  | appVersion | ${issue.appVersion} |
+  `
 }
