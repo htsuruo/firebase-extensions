@@ -6,7 +6,7 @@
   "etags": {
     "playground-c8a87": {
       "extensionInstances": {
-        "create-github-issues-from-crashlytics": "78bfa3ed136fdbfa0e89e0842a97395bfd1b1e1d12aa3e0cc4613339e2b5c363"
+        "trigger-github-issues-from-crashlytics": "dd9132d9db976d3a48808c91d1716a432999084cc0f3ab73deb95989ee4be807"
       }
     }
   }
