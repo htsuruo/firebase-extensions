@@ -18,12 +18,20 @@ type CrashlyticsInfo<T> = {
 
 // ref. https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue
 export async function createGitHubIssue<T>(info: CrashlyticsInfo<T>) {
+  const alertType = info.event.alertType.split('.').at(-1) as CrashlyticsAlert
+  if (!process.env.ALERTS?.split(',').includes(alertType)) {
+    logger.info(
+      `Skip the creation of a GitHub issue because ${alertType} alert is not enabled`
+    )
+    return
+  }
+
   try {
     await octokit.rest.issues.create({
       owner: process.env.GITHUB_OWNER!,
       repo: process.env.GITHUB_REPO!,
       title: info.issue.title,
-      body: makeBody(info),
+      body: makeBody(info, alertType),
       labels: process.env.GITHUB_LABELS?.split(','),
     })
   } catch (error) {
@@ -40,11 +48,10 @@ export async function createGitHubIssue<T>(info: CrashlyticsInfo<T>) {
   }
 }
 
-function makeBody<T>(info: CrashlyticsInfo<T>) {
+function makeBody<T>(info: CrashlyticsInfo<T>, alertType: CrashlyticsAlert) {
   const { event, issue } = info
   logger.info(event, { structuredData: true })
   const appId = event.appId
-  const alertType = event.alertType.split('.').at(-1) as CrashlyticsAlert
   return `
     ## ${issue.title}
     | Header | Header |

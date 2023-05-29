@@ -111,10 +111,10 @@ params:
     type: multiSelect
     required: true
     options:
-      - label: Fatal alert
-        value: fatal
-      - label: Non-Fatal alert
-        value: nonFatal
+      - label: New Fatal Issue
+        value: newFatalIssue
+      - label: New Non-Fatal Issue
+        value: newNonfatalIssue
 
   - param: LOCATION
     label: Cloud Functions location
