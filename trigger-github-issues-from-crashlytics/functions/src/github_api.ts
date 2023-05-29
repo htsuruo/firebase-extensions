@@ -51,6 +51,9 @@ export async function createGitHubIssueIfEnabled<T>(info: CrashlyticsInfo<T>) {
 function makeBody<T>(info: CrashlyticsInfo<T>, alertType: CrashlyticsAlert) {
   const { event, issue } = info
   logger.info(event, { structuredData: true })
+  // TODO(tsuruoka): 本来はURLリンクを載せたいものの、`packageName`が取得できず`appId`のみなのでURLを生成できない問題
+  // フォーマットは以下であることを確認したので、`packageName`が取得できるようになったらURLも表示できる
+  // https://console.firebase.google.com/project/[PROJECT_ID]/crashlytics/app/[OS]:[PACKAGE_NAME]/issues/[ISSUE_ID]?time=last-seven-days
   const appId = event.appId
   return `
   ### ${issue.subtitle}
