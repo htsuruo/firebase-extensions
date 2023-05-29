@@ -51,6 +51,7 @@ resources:
       location: ${LOCATION}
       eventTrigger:
         eventType: google.firebase.firebasealerts.alerts.v1.published
+        triggerRegion: global
         eventFilters:
           - attribute: alerttype
             value: crashlytics.newFatalIssue
@@ -67,6 +68,7 @@ resources:
       location: ${LOCATION}
       eventTrigger:
         eventType: google.firebase.firebasealerts.alerts.v1.published
+        triggerRegion: global
         eventFilters:
           - attribute: alerttype
             value: crashlytics.newNonfatalIssue
@@ -162,7 +164,3 @@ params:
         value: australia-southeast1
     required: true
     immutable: true
-
-events:
-  - type: firebase.extensions.export-user-data.v1.firestore
-    description: Occurs when a collections/document export has been triggered.
