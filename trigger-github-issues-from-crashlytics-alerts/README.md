@@ -4,14 +4,14 @@
 
 **Description**: Automatically creates GitHub Issues triggered by new Crashlytics fatal/non-fatal issues.
 
-**Details**: By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics fatal issues.
+**Details**: By using this extension, creates a GitHub Issue on your selected repository, and attached required labels, triggered by new Crashlytics alerts.
 
 The features of this extension are as follows:
 
-- Automatically creates GitHub Issues if new Crashlytics fatal issues report
+- Automatically creates GitHub Issues if new Crashlytics issue occurs
   - Using GitHub API's [Create an issue](https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue)
 - Allows developer to set required multiple labels
-  - ex. bugs, crashlytics
+  - ex. bugs,crashlytics
 
 **This extension helps to simplify the construction of the contents described in the [Firebase Alerts triggers](https://firebase.google.com/docs/functions/alert-events#handle-crashlytics-alerts) section of the official documentation. There's no need for creating service accounts or setting up Cloud Functions. Simply install the extension and it's all done with a single click.**
 
@@ -19,10 +19,10 @@ The features of this extension are as follows:
 
 - `crashlytics.newFatalIssue`: An event is sent when an application experiences a new fatal crash (not for any subsequent, identical events).
 - `crashlytics.newNonfatalIssue`: An event is sent when an application experiences a new non-fatal error (not for any subsequent, identical events).
+- `crashlytics.newAnrIssue`: An event is sent when an application experiences a new Application Not Responding (ANR) error (not for any subsequent, identical events).
 
 ### Not supported (Future Works)
 
-- `crashlytics.newAnrIssue`: An event is sent when an application experiences a new Application Not Responding (ANR) error (not for any subsequent, identical events).
 - `crashlytics.regression`: An event is sent when an application experiences a crash for an issue marked as closed for a previous application version.
 - `crashlytics.stabilityDigest`: An event is sent when there is a notification of the top trending issues in Crashlytics.
 - `crashlytics.velocity`: An event is sent when a single issue is responsible for causing a significant number of application sessions to crash.
@@ -67,6 +67,8 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 - createNonFatalIssue (firebaseextensions.v1beta.v2function)
 
+- createAnrIssue (firebaseextensions.v1beta.v2function)
+
 **APIs Used**:
 
 - eventarc.googleapis.com (Reason: Powers all events and triggers)
@@ -78,3 +80,5 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 This extension will operate with the following project IAM roles:
 
 - firebasecrashlytics.viewer (Reason: Allows the extension to read Crashlytics reports.)
+
+- eventarc.eventReceiver (Reason: Allows the extension to trigger on alerts.)
