@@ -4,6 +4,7 @@ import {
   CrashlyticsOptions,
   onNewFatalIssuePublished,
   onNewNonfatalIssuePublished,
+  onNewAnrIssuePublished,
 } from 'firebase-functions/v2/alerts/crashlytics'
 import { createGitHubIssue } from './github_api'
 
@@ -28,3 +29,10 @@ exports.createNonFatalIssue = onNewNonfatalIssuePublished(
     })
   }
 )
+
+exports.createAnrIssue = onNewAnrIssuePublished(options, async (event) => {
+  await createGitHubIssue({
+    event,
+    issue: event.data.payload.issue,
+  })
+})

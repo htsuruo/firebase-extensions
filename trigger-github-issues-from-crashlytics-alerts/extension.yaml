@@ -75,6 +75,23 @@ resources:
           - attribute: alerttype
             value: crashlytics.newNonfatalIssue
 
+  - name: createAnrIssue
+    type: firebaseextensions.v1beta.v2function
+    description: >-
+      New ANR issue triggered function that creates GitHub Issues.
+    properties:
+      buildConfig:
+        runtime: nodejs18
+      serviceConfig:
+        availableMemory: 512M
+      location: ${LOCATION}
+      eventTrigger:
+        eventType: google.firebase.firebasealerts.alerts.v1.published
+        triggerRegion: global
+        eventFilters:
+          - attribute: alerttype
+            value: crashlytics.newAnrIssue
+
 # In the `params` field, set up your extension's user-configured parameters.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
@@ -115,6 +132,8 @@ params:
         value: newFatalIssue
       - label: New Non-Fatal Issue
         value: newNonfatalIssue
+      - label: New ANR Issue
+        value: newAnrIssue
 
   - param: LOCATION
     label: Cloud Functions location
