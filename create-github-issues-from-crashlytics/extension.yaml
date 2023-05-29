@@ -85,7 +85,7 @@ params:
       Use PAT(Personal Access Token) or GitHub Apps Token
     type: secret
     required: true
-    default: github_pat_xxx
+    example: github_pat_xxx
 
   - param: GITHUB_OWNER
     label: The owner or organization name for your repository
