@@ -10,7 +10,7 @@ You can test out this extension right away!
 
 # Using the extension
 
-When triggered by a new Crashlytics fatal issue, this extension creates a GitHub issue in [`${param:GITHUB_OWNER}/${param:GITHUB_REPO}`](https://github.com/GITHUB_OWNER/GITHUB_REPO/issues).
+When triggered by a new Crashlytics fatal issue, this extension creates a GitHub issue in [`${param:GITHUB_OWNER}/${param:GITHUB_REPO}`](https://github.com/${param:GITHUB_OWNER}/${param:GITHUB_REPO}/issues).
 
 To learn more about Firebase Alerts triggers, visit the [functions documentation](https://firebase.google.com/docs/functions/alert-events).
 
