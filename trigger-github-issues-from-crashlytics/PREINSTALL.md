@@ -1,4 +1,4 @@
-By using this extension, youy can create GitHub Issues on a selected repository, and attach required labels, triggered by new Crashlytics alerts.
+By using this extension, you can create GitHub Issues on a selected repository, and attach required labels, triggered by new Crashlytics alerts.
 
 This extension streamlines the creation of content outlined in the Firebase Alerts triggers section of [the official Firebase documentation](https://firebase.google.com/docs/functions/alert-events#handle-crashlytics-alerts). It eliminates the need to manually create service accounts or configure Cloud Functions. Just install the extension, and with a single click, you're all set up.
 
