@@ -12,7 +12,7 @@ This extension streamlines the creation of content outlined in the Firebase Aler
 
 The features of this extension are as follows:
 
-- Automatically create a GitHub issue if new Crashlytics issue occurs using the [GitHub API](https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue).
+- Automatically create a GitHub issue if a new Crashlytics issue occurs using the [GitHub API](https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue).
 - Allow developers to set multiple required labels (e.g., `bugs`, `crashlytics`) for issues.
 
 | Crashlytics Issue | GitHub Issue |
@@ -35,11 +35,11 @@ The features of this extension are as follows:
 
 Before installing this extension, make sure that you've [created a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your GitHub account to access the GitHub API（if your repository is organization, use GitHub Apps). 
 
-Two approaches exist for creating access tokens, but `Fine-grained personal access tokens` is recommended.
+Two approaches exist for creating access tokens, but `Fine-grained personal access tokens` are recommended.
 
 ### Permissions
 
-When creating a PAT, you need to give it the following permission:
+When creating a PAT (Personal Access Token), you need to give it the following permission:
 `repository permissions > Issues > Read and write`
 
 <img width="630" alt="SCR-20230527-ogal-2" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/719bcfd8-12c7-4336-adde-924738553592">
@@ -65,7 +65,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 * The name of your repository for creating issues
 
-* Labels to associate with the issue: The param requires comma (,) separated format. Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
+* Labels to associate with the issue: The param requires camma(,) separated format Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
 
 * The selection of alert type you want to trigger
 

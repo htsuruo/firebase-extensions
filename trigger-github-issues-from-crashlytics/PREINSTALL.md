@@ -31,7 +31,7 @@ Two approaches exist for creating access tokens, but `Fine-grained personal acce
 
 ### Permissions
 
-When creating a PAT, you need to give it the following permission:
+When creating a PAT (Personal Access Token), you need to give it the following permission:
 `repository permissions > Issues > Read and write`
 
 <img width="630" alt="SCR-20230527-ogal-2" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/719bcfd8-12c7-4336-adde-924738553592">
