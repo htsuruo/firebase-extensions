@@ -65,7 +65,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 * The name of your repository for creating issues
 
-* Labels to associate with the issue: The param requires camma(,) separated format Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
+* Labels to associate with the issue: The param requires comma (,) separated format. Only users with push access can set labels for new issues. Labels are silently dropped otherwise.
 
 * The selection of alert type you want to trigger
 
