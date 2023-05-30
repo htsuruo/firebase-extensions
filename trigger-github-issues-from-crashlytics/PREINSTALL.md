@@ -4,7 +4,7 @@ This extension streamlines the creation of content outlined in the Firebase Aler
 
 The features of this extension are as follows:
 
-- Automatically create a GitHub issue if new Crashlytics issue occurs using the [GitHub API](https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue).
+- Automatically create a GitHub issue if a new Crashlytics issue occurs using the [GitHub API](https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue).
 - Allow developers to set multiple required labels (e.g., `bugs`, `crashlytics`) for issues.
 
 | Crashlytics Issue | GitHub Issue |
