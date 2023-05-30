@@ -1,15 +1,3 @@
-<!-- 
-This file provides your users an overview of how to use your extension after they've installed it. All content is optional, but this is the recommended format. Your users will see the contents of this file in the Firebase console after they install the extension.
-
-Include instructions for using the extension and any important functional details. Also include **detailed descriptions** for any additional post-installation setup required by the user.
-
-Reference values for the extension instance using the ${param:PARAMETER_NAME} or ${function:VARIABLE_NAME} syntax.
-Learn more in the docs: https://firebase.google.com/docs/extensions/publishers/user-documentation#reference-in-postinstall
-
-Learn more about writing a POSTINSTALL.md file in the docs:
-https://firebase.google.com/docs/extensions/publishers/user-documentation#writing-postinstall
--->
-
 # See it in action
 
 You can test out this extension right away!
@@ -17,18 +5,15 @@ You can test out this extension right away!
 1. Force a crash to test your implementation
     - [Test your Crashlytics implementation  |  Firebase Crashlytics](https://firebase.google.com/docs/crashlytics/test-implementation?platform=flutter)
 
-1. Access the your repository issues page to confirm that the issue has been created.
-    - https://github.com/${param:OWNER_NAME}/${param:REPO_NAME}"/issues
+2. Go to your repository issues page to confirm that the issue has been created.
+    - https://github.com/${param:GITHUB_OWNER}/${param:GITHUB_REPO}/issues
 
 # Using the extension
 
-When triggered by an new Crashlytics fatal issue, this extension creates an GitHub issue the following specified URL:
-
-https://github.com/${param:OWNER_NAME}/${param:REPO_NAME}/issues
+When triggered by a new Crashlytics fatal issue, this extension creates a GitHub issue in [`${param:GITHUB_OWNER}/${param:GITHUB_REPO}`](https://github.com/GITHUB_OWNER/GITHUB_REPO/issues).
 
 To learn more about Firebase Alerts triggers, visit the [functions documentation](https://firebase.google.com/docs/functions/alert-events).
 
-<!-- We recommend keeping the following section to explain how to monitor extensions with Firebase -->
 # Monitoring
 
 As a best practice, you can [monitor the activity](https://firebase.google.com/docs/extensions/manage-installed-extensions#monitor) of your installed extension, including checks on its health, usage, and logs.
