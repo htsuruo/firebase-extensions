@@ -35,7 +35,7 @@ The features of this extension are as follows:
 
 Before installing this extension, make sure that you've [created a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your GitHub account to access the GitHub API（if your repository is organization, use GitHub Apps). 
 
-Two approach exists for creating access tokens, but `Fine-grained personal access tokens` is recommended.
+Two approaches exist for creating access tokens, but `Fine-grained personal access tokens` is recommended.
 
 ### Permissions
 
