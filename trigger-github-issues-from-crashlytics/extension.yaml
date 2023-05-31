@@ -1,7 +1,7 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 name: trigger-github-issues-from-crashlytics
-version: 0.0.1
+version: 0.0.2
 specVersion: v1beta
 
 displayName: Trigger GitHub issues from Crashlytics
