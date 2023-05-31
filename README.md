@@ -6,8 +6,9 @@ This is a collection of Firebase Extensions build by [HTsuruo](https://github.co
 
 - [trigger-github-issues-from-crashlytics](https://github.com/HTsuruo/firebase-extensions/tree/main/trigger-github-issues-from-crashlytics)
   - Automatically creates GitHub Issues triggered by Crashlytics alerts.
+  - [Install in Firebase Console](https://extensions.dev/extensions/htsuruo/trigger-github-issues-from-crashlytics)
 
-## Reference
+## References
 
 - [firebase/extensions](https://github.com/firebase/extensions)
 - [invertase/firebase-extensions](https://github.com/invertase/firebase-extensions)
