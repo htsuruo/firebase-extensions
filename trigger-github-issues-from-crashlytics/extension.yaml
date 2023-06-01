@@ -7,7 +7,9 @@ specVersion: v1beta
 displayName: Trigger GitHub issues from Crashlytics
 description: >-
   Automatically creates GitHub Issues triggered by Crashlytics alerts.
+icon: icon.png
 tags: [utilities]
+
 license: Apache-2.0
 sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/trigger-github-issues-from-crashlytics
 
