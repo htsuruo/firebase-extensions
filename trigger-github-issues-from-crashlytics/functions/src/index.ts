@@ -5,6 +5,9 @@ import {
   onNewFatalIssuePublished,
   onNewNonfatalIssuePublished,
   onNewAnrIssuePublished,
+  NewFatalIssuePayload,
+  NewNonfatalIssuePayload,
+  NewAnrIssuePayload,
 } from 'firebase-functions/v2/alerts/crashlytics'
 import { createGitHubIssueIfEnabled } from './github_api'
 
@@ -13,26 +16,17 @@ const options: CrashlyticsOptions = {
   secrets: ['GITHUB_ACCESS_TOKEN'],
 }
 
-exports.createFatalIssue = onNewFatalIssuePublished(options, async (event) => {
-  await createGitHubIssueIfEnabled({
-    event,
-    issue: event.data.payload.issue,
-  })
-})
-
-exports.createNonFatalIssue = onNewNonfatalIssuePublished(
-  options,
-  async (event) => {
-    await createGitHubIssueIfEnabled({
-      event,
-      issue: event.data.payload.issue,
-    })
-  }
+// New fatal issue
+exports.createFatalIssue = onNewFatalIssuePublished(options, (event) =>
+  createGitHubIssueIfEnabled<NewFatalIssuePayload>(event)
 )
 
-exports.createAnrIssue = onNewAnrIssuePublished(options, async (event) => {
-  await createGitHubIssueIfEnabled({
-    event,
-    issue: event.data.payload.issue,
-  })
-})
+// New non-fatal issue
+exports.createNonFatalIssue = onNewNonfatalIssuePublished(options, (event) =>
+  createGitHubIssueIfEnabled<NewNonfatalIssuePayload>(event)
+)
+
+// New ANR issue
+exports.createAnrIssue = onNewAnrIssuePublished(options, (event) =>
+  createGitHubIssueIfEnabled<NewAnrIssuePayload>(event)
+)

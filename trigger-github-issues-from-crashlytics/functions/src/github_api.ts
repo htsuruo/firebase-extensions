@@ -1,24 +1,18 @@
 import { Octokit } from '@octokit/rest'
 import { RequestError } from '@octokit/request-error'
-import {
-  CrashlyticsEvent,
-  Issue,
-} from 'firebase-functions/v2/alerts/crashlytics'
+import { CrashlyticsEvent } from 'firebase-functions/v2/alerts/crashlytics'
 import { logger } from 'firebase-functions/v2'
-import { CrashlyticsAlert } from './crashlytics_alert'
+import { CrashlyticsAlert, CrashlyticsPayload } from './types'
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_ACCESS_TOKEN,
 })
 
-type CrashlyticsInfo<T> = {
-  event: CrashlyticsEvent<T>
-  issue: Issue
-}
-
 // ref. https://docs.github.com/ja/rest/issues/issues?apiVersion=2022-11-28#create-an-issue
-export async function createGitHubIssueIfEnabled<T>(info: CrashlyticsInfo<T>) {
-  const alertType = info.event.alertType.split('.').at(-1) as CrashlyticsAlert
+export async function createGitHubIssueIfEnabled<T extends CrashlyticsPayload>(
+  event: CrashlyticsEvent<T>
+) {
+  const alertType = parseAlertType(event.alertType)
   if (!process.env.ALERTS?.split(',').includes(alertType)) {
     logger.info(
       `Skip the creation of a GitHub issue because ${alertType} alert is not enabled`
@@ -27,11 +21,12 @@ export async function createGitHubIssueIfEnabled<T>(info: CrashlyticsInfo<T>) {
   }
 
   try {
+    const payload = event.data.payload
     await octokit.rest.issues.create({
       owner: process.env.GITHUB_OWNER!,
       repo: process.env.GITHUB_REPO!,
-      title: info.issue.title,
-      body: makeBody(info, alertType),
+      title: payload.issue.title,
+      body: makeBody(event),
       labels: process.env.GITHUB_LABELS?.split(','),
     })
   } catch (error) {
@@ -42,19 +37,20 @@ export async function createGitHubIssueIfEnabled<T>(info: CrashlyticsInfo<T>) {
         logger.error(error.message)
       }
     }
-    // handle all other errors
     logger.error(error, { structuredData: true })
     throw error
   }
 }
 
-function makeBody<T>(info: CrashlyticsInfo<T>, alertType: CrashlyticsAlert) {
-  const { event, issue } = info
+function makeBody<T extends CrashlyticsPayload>(event: CrashlyticsEvent<T>) {
   logger.info(event, { structuredData: true })
+  const issue = event.data.payload.issue
+  const alertType = parseAlertType(event.alertType)
   // TODO(tsuruoka): 本来はURLリンクを載せたいものの、`packageName`が取得できず`appId`のみなのでURLを生成できない問題
   // フォーマットは以下であることを確認したので、`packageName`が取得できるようになったらURLも表示できる
   // https://console.firebase.google.com/project/[PROJECT_ID]/crashlytics/app/[OS]:[PACKAGE_NAME]/issues/[ISSUE_ID]?time=last-seven-days
   const appId = event.appId
+
   return `
   ### ${issue.subtitle}
 
@@ -65,4 +61,8 @@ function makeBody<T>(info: CrashlyticsInfo<T>, alertType: CrashlyticsAlert) {
   | id | ${issue.id} |
   | appVersion | ${issue.appVersion} |
   `
+}
+
+function parseAlertType(alertType: string) {
+  return alertType.split('.').at(-1) as CrashlyticsAlert
 }
