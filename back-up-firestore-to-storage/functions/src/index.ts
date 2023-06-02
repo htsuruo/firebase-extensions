@@ -11,10 +11,11 @@ exports.backupTransaction = pubsub
   .schedule(process.env.SCHEDULE_FREQUENCY!)
   .timeZone(process.env.TIME_ZONE ?? 'UTC')
   .onRun(async (_) => {
-    const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT!
-    const bucketName = process.env.BUCKET_NAME!
-    const outputUriPrefix = `gs://${bucketName}/${process.env.PATH}`
+    const projectId = process.env.PROJECT_ID!
     const databaseName = client.databasePath(projectId, '(default)')
+    const bucketName = process.env.BUCKET_NAME ?? process.env.STORAGE_BUCKET
+    const path = process.env.PATH ?? process.env.EXT_INSTANCE_ID
+    const outputUriPrefix = `gs://${bucketName}/${path}`
     try {
       // await createBucketUnlessExists(bucketName)
       await client.exportDocuments({

@@ -48,17 +48,23 @@ resources:
 params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
+    description: >-
+      If not set, it defaults to `project-id.appspot.com`.
     type: string
-    required: true
+    required: false
 
   - param: PREFIX_PATH
-    label: Cloud Storage prefix path (not including filename)
+    label: Cloud Storage prefix path (not including heading slash, filename)
+    description: >-
+      If not set, it defaults to `back-up-firestore-to-storage`.
     type: string
+    example: back-up-firestore-to-storage
     required: false
 
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
     type: string
+    example: users,posts
     required: true
 
   - param: SCHEDULE_FREQUENCY
@@ -71,7 +77,7 @@ params:
     required: true
 
   - param: TIME_ZONE
-    label: Time zone of the scheduled time（If not set, it defaults to UTC.）
+    label: Time zone of the scheduled time (If not set, it defaults to `UTC`.)
     description: >-
       Refer to the [Time Zone List]https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
     required: false
