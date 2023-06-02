@@ -9,6 +9,7 @@ const client = new v1.FirestoreAdminClient()
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = pubsub
   .schedule(process.env.SCHEDULE_FREQUENCY!)
+  .timeZone(process.env.TIME_ZONE ?? 'UTC')
   .onRun(async (_) => {
     const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT!
     const bucketName = process.env.BUCKET_NAME!

@@ -35,7 +35,9 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 - Firestore collection ids (separated by ',')
 
-- Schedule: How often do you want to run backupTransaction()?
+- Schedule to execute the backup: Supports both `Unix Crontab` and `App Engine syntax`. If you use App Engine syntax, refer to the section of `Scheduling jobs with cron.yaml` [official Google Cloud documentacion](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml).
+
+- Time zone of the scheduled time（If not set, it defaults to UTC.）: Refer to the [Time Zone List]https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
 - Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 

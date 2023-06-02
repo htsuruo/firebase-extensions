@@ -62,11 +62,24 @@ params:
     required: true
 
   - param: SCHEDULE_FREQUENCY
-    label: Schedule
-    description: How often do you want to run backupTransaction()?
+    label: Schedule to execute the backup
+    description: >-
+      Supports both `Unix Crontab` and `App Engine syntax`.
+      If you use App Engine syntax, refer to the section of `Scheduling jobs with cron.yaml` [official Google Cloud documentacion](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml).
     type: string
-    default: 'every day 00:00'
+    example: 'every day 00:00'
     required: true
+
+  - param: TIME_ZONE
+    label: Time zone of the scheduled time（If not set, it defaults to UTC.）
+    description: >-
+      Refer to the [Time Zone List]https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    required: false
+    # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
+    type: string
+    # ref. https://www.debuggex.com/r/771ms2kxDLYJAz2N
+    validationRegex: '^(UTC|[A-Za-z_]+/([A-Za-z_]+)*)$'
+    example: 'Asia/Tokyo'
 
   - param: LOCATION
     label: Cloud Functions location
@@ -74,6 +87,8 @@ params:
       Where do you want to deploy the functions created for this extension?
       For help selecting a location, refer to the [location selection
       guide](https://firebase.google.com/docs/functions/locations).
+    required: true
+    immutable: true
     type: select
     options:
       - label: Iowa (us-central1)
@@ -116,5 +131,3 @@ params:
         value: southamerica-east1
       - label: Sydney (australia-southeast1)
         value: australia-southeast1
-    required: true
-    immutable: true
