@@ -7,7 +7,7 @@ displayName: Back up firestore to storage
 
 #  (~1 sentence)
 description: >-
-  Back up Firestore documents to Cloud Storage in batch processing at the specified time.
+  Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
 
 license: Apache-2.0
 
