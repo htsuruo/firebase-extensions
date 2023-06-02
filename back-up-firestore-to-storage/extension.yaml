@@ -1,27 +1,29 @@
+# https://firebase.google.com/docs/extensions/reference/extension-yaml
+
 name: back-up-firestore-to-storage
 version: 0.0.1
 specVersion: v1beta
+license: Apache-2.0
+billingRequired: true
 
-#  (~3-5 words)
 displayName: Back up firestore to storage
-
-#  (~1 sentence)
 description: >-
   Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
-
-license: Apache-2.0
+icon: icon.png
+tags: [utilities]
 
 sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
 
-billingRequired: false
-
 author:
-  authorName: Hideki Tsuruoka
+  authorName: Hideki TSURUOKA
   email: tsuru.dev@gmail.com
   url: https://github.com/HTsuruo
 
-# In a `roles` field, list any IAM access roles required for your extension to operate.
-# Learn more in the docs:
+apis:
+  # ref. https://firebase.google.com/docs/firestore/reference/rest/v1beta1/projects.databases/exportDocuments?hl=en
+  - apiName: firestore.googleapis.com
+    reason: Exports Firestore documents in a restorable format
+
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#roles-field
 roles:
   - role: datastore.importExportAdmin
@@ -29,8 +31,6 @@ roles:
   - role: storage.admin
     reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.
 
-# In the `resources` field, list each of your extension's functions, including the trigger for each function.
-# Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
   - name: backupTransaction
@@ -43,18 +43,6 @@ resources:
         schedule: ${SCHEDULE_FREQUENCY}
       runtime: nodejs18
       timeout: 540s
-
-# TODO(tsuruoka): フォーマット的にはあってそうだがv2のtriggerが上手く機能せずエンドポイントが表示されないので仕方なくv1で対処
-# resources:
-#   - name: backupTransaction
-#     type: firebaseextensions.v1beta.v2function
-#     description: >-
-#       HTTP request-triggered function that responds with a specified greeting message
-#     properties:
-#       location: ${LOCATION}
-#       httpsTrigger: {}
-#       buildConfig.runtime: nodejs18
-#       serviceConfig.timeoutSeconds: 540
 
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:

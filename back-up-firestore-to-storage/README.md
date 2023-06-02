@@ -1,6 +1,6 @@
 # Back up firestore to storage
 
-**Author**: Hideki Tsuruoka (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
+**Author**: Hideki TSURUOKA (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
 
 **Description**: Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
 
@@ -42,6 +42,10 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 **Cloud Functions:**
 
 - **backupTransaction:** Schedule triggered function that executes backup Firestore to Cloud Storage
+
+**APIs Used**:
+
+- firestore.googleapis.com (Reason: Exports Firestore documents in a restorable format)
 
 **Access Required**:
 
