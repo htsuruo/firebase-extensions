@@ -7,7 +7,7 @@ const client = new v1.FirestoreAdminClient()
 
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = pubsub
-  .schedule(process.env.SCHEDULE_FREQUENCY!)
+  .schedule(process.env.SCHEDULE!)
   .timeZone(process.env.TIME_ZONE ?? 'UTC')
   .onRun(async (_) => {
     const projectId = process.env.PROJECT_ID!

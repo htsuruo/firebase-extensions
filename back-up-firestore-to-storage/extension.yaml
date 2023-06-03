@@ -40,7 +40,8 @@ resources:
     properties:
       location: ${LOCATION}
       scheduleTrigger:
-        schedule: ${SCHEDULE_FREQUENCY}
+        schedule: ${SCHEDULE}
+        timeZone: ${TIME_ZONE}
       runtime: nodejs18
       timeout: 540s
 
@@ -49,14 +50,14 @@ params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
     description: >-
-      If not set, it defaults to `project-id.appspot.com`.
+      Defaults to `project-id.appspot.com`.
     type: string
     required: false
 
   - param: PREFIX_PATH
     label: Cloud Storage prefix path (not including heading slash, filename)
     description: >-
-      If not set, it defaults to `back-up-firestore-to-storage`.
+      Defaults to `back-up-firestore-to-storage`.
     type: string
     example: back-up-firestore-to-storage
     required: false
@@ -67,19 +68,20 @@ params:
     example: users,posts
     required: true
 
-  - param: SCHEDULE_FREQUENCY
-    label: Schedule to execute the backup
+  - param: SCHEDULE
+    label: The frequency at which you want to execute the backup.
     description: >-
-      Supports both `Unix Crontab` and `App Engine syntax`.
-      If you use App Engine syntax, refer to the section of `Scheduling jobs with cron.yaml` [official Google Cloud documentacion](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml).
+      This field can accept strings that use either syntax:
+      - unix-cron syntax (for example, '5 11 * * *')
+      - App Engine syntax (for example, 'every 5 minutes')
     type: string
     example: 'every day 00:00'
     required: true
 
   - param: TIME_ZONE
-    label: Time zone of the scheduled time (If not set, it defaults to `UTC`.)
+    label: The time zone in which the schedule will run (Defaults to UTC).
     description: >-
-      Refer to the [Time Zone List]https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+      Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
     required: false
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
