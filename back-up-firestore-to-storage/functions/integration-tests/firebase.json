@@ -19,5 +19,8 @@
   },
   "extensions": {
     "back-up-firestore-to-storage": "../.."
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

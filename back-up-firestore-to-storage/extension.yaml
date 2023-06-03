@@ -45,22 +45,23 @@ resources:
       runtime: nodejs18
       timeout: 540s
 
+  - name: backupTransactionHttps
+    type: firebaseextensions.v1beta.function
+    description: >-
+      Https triggered function that executes backup Firestore to Cloud Storage
+    properties:
+      location: ${LOCATION}
+      httpsTrigger: {}
+      runtime: nodejs18
+      timeout: 540s
+
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
-    description: >-
-      Defaults to `project-id.appspot.com`.
     type: string
-    required: false
-
-  - param: PREFIX_PATH
-    label: Cloud Storage prefix path (not including heading slash, filename)
-    description: >-
-      Defaults to `back-up-firestore-to-storage`.
-    type: string
-    example: back-up-firestore-to-storage
-    required: false
+    default: back-up-firestore-to-storage
+    required: true
 
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
