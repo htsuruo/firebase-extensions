@@ -18,6 +18,6 @@
     "singleProjectMode": true
   },
   "extensions": {
-    "backup-firestore-to-storage": "../.."
+    "back-up-firestore-to-storage": "../.."
   }
 }
