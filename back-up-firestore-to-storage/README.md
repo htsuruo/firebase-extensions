@@ -15,7 +15,8 @@ The features of this extension are as follows:
 - Exports documents of specified Firestore collection ID(s) at any scheduled time
 - Allows developers to set schedule the time to export
   - Supports both `Unix Crontab` and `App Engine syntax`
-    - ref. [Scheduling jobs with cron.yaml | Google App Engine flexible environment docs | Google Cloud](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml)
+    - [unix-cron syntax](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) (for example, '5 11 ** *')
+    - [App Engine syntax](https://cloud.google.com/appengine/docs/standard/scheduling-jobs-with-cron-yaml#defining_the_cron_job_schedule) (for example, 'every 5 minutes')
 
 # Billing
 
@@ -29,15 +30,15 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-- Cloud Storage bucket
+- Cloud Storage bucket: Defaults to `project-id.appspot.com`.
 
-- Cloud Storage prefix path (not including filename)
+- Cloud Storage prefix path (not including heading slash, filename): Defaults to `back-up-firestore-to-storage`.
 
 - Firestore collection ids (separated by ',')
 
-- Schedule to execute the backup: Supports both `Unix Crontab` and `App Engine syntax`. If you use App Engine syntax, refer to the section of `Scheduling jobs with cron.yaml` [official Google Cloud documentacion](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml).
+- The frequency at which you want to execute the backup.: This field can accept strings that use either syntax: - unix-cron syntax (for example, '5 11 ** *') - App Engine syntax (for example, 'every 5 minutes')
 
-- Time zone of the scheduled time（If not set, it defaults to UTC.）: Refer to the [Time Zone List]https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+- The time zone in which the schedule will run (Defaults to UTC).: Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
 
 - Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 

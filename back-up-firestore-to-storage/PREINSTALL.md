@@ -9,7 +9,8 @@ The features of this extension are as follows:
 - Exports documents of specified Firestore collection ID(s) at any scheduled time
 - Allows developers to set schedule the time to export
   - Supports both `Unix Crontab` and `App Engine syntax`
-    - ref. [Scheduling jobs with cron.yaml | Google App Engine flexible environment docs | Google Cloud](https://cloud.google.com/appengine/docs/flexible/scheduling-jobs-with-cron-yaml)
+    - [unix-cron syntax](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) (for example, '5 11 ** *')
+    - [App Engine syntax](https://cloud.google.com/appengine/docs/standard/scheduling-jobs-with-cron-yaml#defining_the_cron_job_schedule) (for example, 'every 5 minutes')
 
 # Billing
 
