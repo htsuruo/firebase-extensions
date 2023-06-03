@@ -7,7 +7,7 @@ const client = new v1.FirestoreAdminClient()
 
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
 exports.backupTransaction = pubsub
-  .schedule(process.env.SCHEDULE!)
+  .schedule(`'${process.env.SCHEDULE!}'`)
   .onRun(async (_) => {
     const projectId = process.env.PROJECT_ID!
     const databaseName = client.databasePath(projectId, '(default)')
