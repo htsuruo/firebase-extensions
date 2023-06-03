@@ -1,0 +1,1 @@
+firebase emulators:start --import=./data --project=demo-test --inspect-functions
