@@ -20,7 +20,10 @@ exports.backupTransaction = pubsub
     if (prefixPath) {
       outputUriPrefix += `/${prefixPath}`
     }
-    outputUriPrefix += `/${formatTimestamp(context.timestamp)}`
+    outputUriPrefix += `/${formatTimestamp({
+      timestamp: context.timestamp,
+      timeZone: process.env.TIME_ZONE,
+    })}`
 
     try {
       // await createBucketIfNotFound(bucketName)
@@ -37,35 +40,6 @@ exports.backupTransaction = pubsub
       throw new HttpsError('internal', '🚨 Backup operation failed.')
     }
   })
-
-// TODO(tsuruoka): `firebase shell`を利用してもLocal Emulatorで`pubsub`関数を実行できないため、
-// 仕方なく作成した動作確認用のHTTPS関数(bug?)
-//
-// exports.backupTransactionHttps = https.onRequest(async (_req, resp) => {
-//   const projectId = process.env.PROJECT_ID!
-//   const databaseName = client.databasePath(projectId, '(default)')
-//   const bucketName = process.env.BUCKET_NAME ?? process.env.STORAGE_BUCKET
-//   let outputUriPrefix = `gs://${bucketName}`
-//   const prefixPath = process.env.PREFIX_PATH
-//   if (prefixPath) {
-//     outputUriPrefix += `/${prefixPath}`
-//   }
-//   outputUriPrefix += `/${new Date().toISOString()}`
-
-//   try {
-//     // await createBucketIfNotFound(bucketName)
-//     await client.exportDocuments({
-//       name: databaseName,
-//       collectionIds: process.env.COLLECTION_IDS?.split(','),
-//       outputUriPrefix: outputUriPrefix,
-//     })
-//     logger.info(`✅ Backup ${databaseName} to ${outputUriPrefix} successfully.`)
-//     resp.sendStatus(200)
-//   } catch (error) {
-//     logger.error(error, { structuredData: true })
-//     throw new HttpsError('internal', '🚨 Backup operation failed.')
-//   }
-// })
 
 // TODO(tsuruoka): バケット作成のAPIを叩いているはずが`ApiError: Not Implemented`となり作成できないのでPending
 
