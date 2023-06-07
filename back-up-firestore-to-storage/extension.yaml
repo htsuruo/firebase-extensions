@@ -28,7 +28,8 @@ apis:
 roles:
   - role: datastore.importExportAdmin
     reason: Allows the extension to export Firestore documents data.
-  - role: storage.admin
+  # TODO(tsuruoka): バケットの作成まで担う場合は`storage.admin`まで必要
+  - role: storage.objectAdmin
     reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.
 
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
