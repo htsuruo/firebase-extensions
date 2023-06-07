@@ -1,7 +1,7 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 name: back-up-firestore-to-storage
-version: 0.0.1
+version: 0.0.2
 specVersion: v1beta
 license: Apache-2.0
 billingRequired: true
