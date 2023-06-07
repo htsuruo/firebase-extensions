@@ -56,4 +56,4 @@ This extension will operate with the following project IAM roles:
 
 - datastore.importExportAdmin (Reason: Allows the extension to export Firestore documents data.)
 
-- storage.admin (Reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.)
+- storage.objectAdmin (Reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.)
