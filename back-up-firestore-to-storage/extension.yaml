@@ -6,7 +6,7 @@ specVersion: v1beta
 license: Apache-2.0
 billingRequired: true
 
-displayName: Back up firestore to storage
+displayName: Back up Firestore to Storage
 description: >-
   Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
 icon: icon.png
