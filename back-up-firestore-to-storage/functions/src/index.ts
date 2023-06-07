@@ -1,12 +1,14 @@
 import { pubsub, logger } from 'firebase-functions/v1'
 import { v1 } from '@google-cloud/firestore'
 import { HttpsError } from 'firebase-functions/v1/https'
+import * as dayjs from 'dayjs'
+import 'dayjs/plugin/timezone'
 // import { Storage } from '@google-cloud/storage'
 
 const client = new v1.FirestoreAdminClient()
 // const storage = new Storage()
 
-// ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=ja
+// ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=en
 exports.backupTransaction = pubsub
   .schedule(`'${process.env.SCHEDULE!}'`)
   .onRun(async (context) => {
@@ -19,9 +21,7 @@ exports.backupTransaction = pubsub
     if (prefixPath) {
       outputUriPrefix += `/${prefixPath}`
     }
-
-    // always UTC time format
-    outputUriPrefix += `/${context.timestamp}`
+    outputUriPrefix += `/${formatTimestamp(context.timestamp)}`
 
     try {
       // await createBucketIfNotFound(bucketName)
@@ -38,6 +38,13 @@ exports.backupTransaction = pubsub
       throw new HttpsError('internal', '🚨 Backup operation failed.')
     }
   })
+
+// `exportDocuments`APIで`outputUriPrefix`が未指定の場合に生成される形式に準拠しフォーマットする
+function formatTimestamp(timestamp: string) {
+  return dayjs(timestamp)
+    .tz(process.env.TIME_ZONE)
+    .format('YYYY-MM-DDTHH:mm:ss_sss')
+}
 
 // TODO(tsuruoka): `firebase shell`を利用してもLocal Emulatorで`pubsub`関数を実行できないため、
 // 仕方なく作成した動作確認用のHTTPS関数(bug?)
