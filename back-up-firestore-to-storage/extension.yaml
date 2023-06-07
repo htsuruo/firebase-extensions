@@ -50,16 +50,14 @@ params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
     description: >-
-      - If not set, `[project-id].appspot.com` is set as the default.
-      - If set, the bucket must exist before  before using this extension.
+      If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
     type: string
-    example: firestore-backup
     required: false
 
   - param: PREFIX_PATH
     label: Cloud Storage prefix path (not including heading slash, filename)
     type: string
-    example: foo
+    example: firestore-backup
     required: false
 
   - param: COLLECTION_IDS
