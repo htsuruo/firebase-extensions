@@ -74,9 +74,11 @@ params:
 
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
+    description: >-
+      - If not set, all collections will be backed up.
     type: string
     example: users,posts
-    required: true
+    required: false
 
   - param: SCHEDULE
     label: The frequency at which you want to execute the backup.
