@@ -1,8 +1,7 @@
 import { pubsub, logger } from 'firebase-functions/v1'
 import { v1 } from '@google-cloud/firestore'
 import { HttpsError } from 'firebase-functions/v1/https'
-import * as dayjs from 'dayjs'
-import 'dayjs/plugin/timezone'
+import { formatTimestamp } from './format'
 // import { Storage } from '@google-cloud/storage'
 
 const client = new v1.FirestoreAdminClient()
@@ -38,13 +37,6 @@ exports.backupTransaction = pubsub
       throw new HttpsError('internal', '🚨 Backup operation failed.')
     }
   })
-
-// `exportDocuments`APIで`outputUriPrefix`が未指定の場合に生成される形式に準拠しフォーマットする
-function formatTimestamp(timestamp: string) {
-  return dayjs(timestamp)
-    .tz(process.env.TIME_ZONE)
-    .format('YYYY-MM-DDTHH:mm:ss_SSS')
-}
 
 // TODO(tsuruoka): `firebase shell`を利用してもLocal Emulatorで`pubsub`関数を実行できないため、
 // 仕方なく作成した動作確認用のHTTPS関数(bug?)
