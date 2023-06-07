@@ -43,7 +43,7 @@ exports.backupTransaction = pubsub
 function formatTimestamp(timestamp: string) {
   return dayjs(timestamp)
     .tz(process.env.TIME_ZONE)
-    .format('YYYY-MM-DDTHH:mm:ss_sss')
+    .format('YYYY-MM-DDTHH:mm:ss_SSS')
 }
 
 // TODO(tsuruoka): `firebase shell`を利用してもLocal Emulatorで`pubsub`関数を実行できないため、
