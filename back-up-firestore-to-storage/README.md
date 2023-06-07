@@ -2,7 +2,7 @@
 
 **Author**: Hideki TSURUOKA (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
 
-**Description**: - Exports Firestore documents to Cloud Storage at any scheduled time.
+**Description**: Exports Firestore documents to Cloud Storage at any scheduled time.
 
 **Details**: By using this extension, export selected Firestore documents to Cloud Storage at any scheduled time. It depends on Google API's [exportDocuments](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases/exportDocuments).
 

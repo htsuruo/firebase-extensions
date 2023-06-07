@@ -7,8 +7,7 @@ license: Apache-2.0
 billingRequired: true
 
 displayName: Back up Firestore to Storage
-description: >-
-  - Exports Firestore documents to Cloud Storage at any scheduled time.
+description: Exports Firestore documents to Cloud Storage at any scheduled time.
 icon: icon.png
 tags: [utilities]
 
