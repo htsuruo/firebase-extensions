@@ -6,7 +6,6 @@
     "ui": {
       "enabled": true
     },
-    "singleProjectMode": true,
     "firestore": {
       "port": 8080
     },
@@ -15,9 +14,26 @@
     },
     "storage": {
       "port": 9199
-    }
+    },
+    "singleProjectMode": true
   },
   "extensions": {
-    "backup-firestore-to-storage": "../.."
+    "back-up-firestore-to-storage": "../.."
+  },
+  "functions": [
+    {
+      "runtime": "nodejs18",
+      "source": "../../functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
   }
 }

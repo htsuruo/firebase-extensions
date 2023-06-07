@@ -6,7 +6,8 @@
   "etags": {
     "playground-c8a87": {
       "extensionInstances": {
-        "trigger-github-issues-from-crashlytics": "dd9132d9db976d3a48808c91d1716a432999084cc0f3ab73deb95989ee4be807"
+        "trigger-github-issues-from-crashlytics": "1f5a4836dbcd33e06b548ad36e44b14be235a9e11ec8cf981d42f08fbfe4740d",
+        "back-up-firestore-to-storage": "e0d95b5e8100646a4fd46cfbc6c6276bbb1705f586806230b0ae48faa0c8331c"
       }
     }
   }

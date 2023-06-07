@@ -1,27 +1,29 @@
+# https://firebase.google.com/docs/extensions/reference/extension-yaml
+
 name: back-up-firestore-to-storage
 version: 0.0.1
 specVersion: v1beta
-
-#  (~3-5 words)
-displayName: Back up firestore to storage
-
-#  (~1 sentence)
-description: >-
-  Back up Firestore documents to Cloud Storage in batch processing at the specified time.
-
 license: Apache-2.0
+billingRequired: true
+
+displayName: Back up Firestore to Storage
+description: >-
+  Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
+icon: icon.png
+tags: [utilities]
 
 sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
 
-billingRequired: false
-
 author:
-  authorName: Hideki Tsuruoka
+  authorName: Hideki TSURUOKA
   email: tsuru.dev@gmail.com
   url: https://github.com/HTsuruo
 
-# In a `roles` field, list any IAM access roles required for your extension to operate.
-# Learn more in the docs:
+apis:
+  # ref. https://firebase.google.com/docs/firestore/reference/rest/v1beta1/projects.databases/exportDocuments?hl=en
+  - apiName: firestore.googleapis.com
+    reason: Exports Firestore documents in a restorable format
+
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#roles-field
 roles:
   - role: datastore.importExportAdmin
@@ -29,8 +31,6 @@ roles:
   - role: storage.admin
     reason: Allows the extension to upload exported Firestore documents data to Cloud Storage.
 
-# In the `resources` field, list each of your extension's functions, including the trigger for each function.
-# Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#resources-field
 resources:
   - name: backupTransaction
@@ -40,45 +40,54 @@ resources:
     properties:
       location: ${LOCATION}
       scheduleTrigger:
-        schedule: ${SCHEDULE_FREQUENCY}
+        schedule: ${SCHEDULE}
+        timeZone: ${TIME_ZONE}
       runtime: nodejs18
       timeout: 540s
-
-# TODO(tsuruoka): フォーマット的にはあってそうだがv2のtriggerが上手く機能せずエンドポイントが表示されないので仕方なくv1で対処
-# resources:
-#   - name: backupTransaction
-#     type: firebaseextensions.v1beta.v2function
-#     description: >-
-#       HTTP request-triggered function that responds with a specified greeting message
-#     properties:
-#       location: ${LOCATION}
-#       httpsTrigger: {}
-#       buildConfig.runtime: nodejs18
-#       serviceConfig.timeoutSeconds: 540
 
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
+    description: >-
+      If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
     type: string
-    required: true
+    required: false
 
   - param: PREFIX_PATH
-    label: Cloud Storage prefix path (not including filename)
+    label: Cloud Storage prefix path (not including heading slash, filename)
     type: string
+    example: firestore-backup
     required: false
 
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
+    description: >-
+      - If not set, all collections will be backed up.
     type: string
+    example: users,posts
+    required: false
+
+  - param: SCHEDULE
+    label: The frequency at which you want to execute the backup.
+    description: >-
+      This field can accept strings that use either syntax:
+      - unix-cron syntax (for example, '5 11 * * *')
+      - App Engine syntax (for example, 'every 5 minutes')
+    type: string
+    example: 'every day 00:00'
     required: true
 
-  - param: SCHEDULE_FREQUENCY
-    label: Schedule
-    description: How often do you want to run backupTransaction()?
+  - param: TIME_ZONE
+    label: The time zone in which the schedule will run (Defaults to UTC).
+    description: >-
+      Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
+    required: false
+    # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
-    default: 'every day 00:00'
-    required: true
+    # ref. https://www.debuggex.com/r/771ms2kxDLYJAz2N
+    validationRegex: '^(UTC|[A-Za-z_]+/([A-Za-z_]+)*)$'
+    example: 'Asia/Tokyo'
 
   - param: LOCATION
     label: Cloud Functions location
@@ -86,6 +95,8 @@ params:
       Where do you want to deploy the functions created for this extension?
       For help selecting a location, refer to the [location selection
       guide](https://firebase.google.com/docs/functions/locations).
+    required: true
+    immutable: true
     type: select
     options:
       - label: Iowa (us-central1)
@@ -128,5 +139,3 @@ params:
         value: southamerica-east1
       - label: Sydney (australia-southeast1)
         value: australia-southeast1
-    required: true
-    immutable: true
