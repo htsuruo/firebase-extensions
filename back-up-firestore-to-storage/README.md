@@ -1,8 +1,8 @@
-# Back up firestore to storage
+# Back up Firestore to Storage
 
 **Author**: Hideki TSURUOKA (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
 
-**Description**: Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
+**Description**: - Exports Firestore documents to Cloud Storage at any scheduled time.
 
 **Details**: By using this extension, export selected Firestore documents to Cloud Storage at any scheduled time. It depends on Google API's [exportDocuments](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases/exportDocuments).
 
@@ -30,7 +30,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-- Cloud Storage bucket: - If not set, `[project-id].appspot.com` is set as the default. - If set, the bucket must exist before  before using this extension.
+- Cloud Storage bucket: If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
 
 - Cloud Storage prefix path (not including heading slash, filename)
 
@@ -45,8 +45,6 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 **Cloud Functions:**
 
 - **backupTransaction:** Schedule triggered function that executes backup Firestore to Cloud Storage
-
-- **backupTransactionHttps:** Https triggered function that executes backup Firestore to Cloud Storage
 
 **APIs Used**:
 

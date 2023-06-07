@@ -8,7 +8,7 @@ billingRequired: true
 
 displayName: Back up Firestore to Storage
 description: >-
-  Exports Firestore documents to Cloud Storage in batch processing at any scheduled time.
+  - Exports Firestore documents to Cloud Storage at any scheduled time.
 icon: icon.png
 tags: [utilities]
 
