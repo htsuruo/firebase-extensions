@@ -1,15 +1,12 @@
 # See it in action
 
-You can test out this extension right away!
-
-Visit the following URL:
-${function:greetTheWorld.url}
+You just need to wait until the scheduled time in ${param:SCHEDULE}.
 
 # Using the extension
 
-When triggered by an HTTP request, this extension responds with the following specified greeting: "${param:GREETING} World from ${param:EXT_INSTANCE_ID}".
+When triggered by scheduled time, this extension creates a Firestore backup objects in [${param:BUCKET_NAME}](https://console.cloud.google.com/storage/browser/${param:BUCKET_NAME}).
 
-To learn more about Schedule functions, visit the [Schedule functions](https://firebase.google.com/docs/functions/schedule-functions?gen=2nd).
+To learn more about Firebase Pub/Sub triggers, visit the [functions documentation](https://firebase.google.com/docs/functions/pubsub-events?gen=2nd).
 
 # Monitoring
 

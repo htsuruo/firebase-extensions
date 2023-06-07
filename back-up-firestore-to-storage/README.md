@@ -30,11 +30,11 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-- Cloud Storage bucket: Defaults to `project-id.appspot.com`.
+- Cloud Storage bucket: - If not set, `[project-id].appspot.com` is set as the default. - If set, the bucket must exist before  before using this extension.
 
-- Cloud Storage prefix path (not including heading slash, filename): Defaults to `back-up-firestore-to-storage`.
+- Cloud Storage prefix path (not including heading slash, filename)
 
-- Firestore collection ids (separated by ',')
+- Firestore collection ids (separated by ','): - If not set, all collections will be backed up.
 
 - The frequency at which you want to execute the backup.: This field can accept strings that use either syntax: - unix-cron syntax (for example, '5 11 ** *') - App Engine syntax (for example, 'every 5 minutes')
 
@@ -45,6 +45,8 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 **Cloud Functions:**
 
 - **backupTransaction:** Schedule triggered function that executes backup Firestore to Cloud Storage
+
+- **backupTransactionHttps:** Https triggered function that executes backup Firestore to Cloud Storage
 
 **APIs Used**:
 
