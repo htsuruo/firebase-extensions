@@ -45,16 +45,6 @@ resources:
       runtime: nodejs18
       timeout: 540s
 
-  - name: backupTransactionHttps
-    type: firebaseextensions.v1beta.function
-    description: >-
-      Https triggered function that executes backup Firestore to Cloud Storage
-    properties:
-      location: ${LOCATION}
-      httpsTrigger: {}
-      runtime: nodejs18
-      timeout: 540s
-
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
 params:
   - param: BUCKET_NAME
