@@ -1,6 +1,6 @@
 By using this extension, export selected Firestore documents to Cloud Storage at any scheduled time. It depends on Google API's [exportDocuments](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases/exportDocuments).
 
-This extension streamlines the creation of content outlined in the Schedule data exports section of[the official Firebase documentation](https://firebase.google.com/docs/firestore/solutions/schedule-export).It eliminates the need to manually create service accounts or configure Cloud Functions. Just install the extension, and with a single click, you're all set up.
+This extension streamlines the creation of content outlined in the Schedule data exports section of [the official Firebase documentation](https://firebase.google.com/docs/firestore/solutions/schedule-export).It eliminates the need to manually create service accounts or configure Cloud Functions. Just install the extension, and with a single click, you're all set up.
 
 > Caution: Exporting data from Cloud Firestore will incur one read operation per document exported. However, these reads will not appear in the usage section of the console. Make sure you understand this before setting up recurring exports to avoid an unexpected bill.
 
@@ -12,7 +12,14 @@ The features of this extension are as follows:
     - [unix-cron syntax](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) (for example, '5 11 ** *')
     - [App Engine syntax](https://cloud.google.com/appengine/docs/standard/scheduling-jobs-with-cron-yaml#defining_the_cron_job_schedule) (for example, 'every 5 minutes')
 
-# Billing
+## Additional setup
+
+If you want to back up to a bucket other than `[project-id].appspot.com`, you need to create the bucket before using this extension. It is **recommended** that creating the bucket with `Coldline` or `Archive` storage class, due to backup purposes.
+
+For more information about Storage class, please refer to:
+[Available storage classes](https://cloud.google.com/storage/docs/storage-classes#classes)
+
+## Billing
 
 This extension uses other Firebase or Google Cloud Platform services which may have associated charges:
 
