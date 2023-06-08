@@ -41,7 +41,9 @@ exports.backupTransaction = pubsub
     }
   })
 
-// TODO(tsuruoka): バケット作成のAPIを叩いているはずが`ApiError: Not Implemented`となり作成できないのでPending
+// TODO(tsuruoka): バケット作成のAPIを叩いているはずが`ApiError: Not Implemented`となり作成できない問題
+// そもそもバケットの作成については最上位権限の`storage.admin`のIAM roleが必要なので、このためだけに付与するのはセキュリティ的には微妙な気がしている
+// 利用者側にセットアップしてもらうほうが良い気がしている。
 
 // Check if the bucket exists and create it if not
 //
