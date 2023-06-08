@@ -2,10 +2,8 @@ name: Create release note as draft
 
 on:
   workflow_run:
-    workflows:
-      - push-tag
-    types:
-      - completed
+    workflows: [push-tag]
+    types: [completed]
 
 jobs:
   create-draft-release:
