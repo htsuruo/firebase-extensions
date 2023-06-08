@@ -13,8 +13,8 @@ exports.backupTransaction = pubsub
   .onRun(async (context) => {
     const projectId = process.env.PROJECT_ID!
     const databaseName = client.databasePath(projectId, '(default)')
-    const bucketName = process.env.BUCKET_NAME ?? process.env.STORAGE_BUCKET
-    let outputUriPrefix = `gs://${bucketName}`
+    const bucket = process.env.BUCKET ?? process.env.STORAGE_BUCKET
+    let outputUriPrefix = `gs://${bucket}`
 
     const prefixPath = process.env.PREFIX_PATH
     if (prefixPath) {

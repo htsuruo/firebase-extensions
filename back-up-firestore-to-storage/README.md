@@ -37,7 +37,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-- Cloud Storage bucket: If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
+- Cloud Storage bucket: The bucket must exist before using this extension.
 
 - Cloud Storage prefix path (not including heading slash, filename)
 
