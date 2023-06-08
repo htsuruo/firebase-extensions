@@ -1,4 +1,4 @@
-name: Push tag as `[extension]/[version]` format
+name: Push tag
 
 on:
   workflow_dispatch:
@@ -22,21 +22,27 @@ on:
 jobs:
   push-tag:
     runs-on: ubuntu-latest
+    env:
+      TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
+      ARTIFACT_FILE: /tmp/tag.txt
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Print inputs
-        run: echo "${INPUT_EXTENSION}/${INPUT_VERSION}"
-        env:
-          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
-          INPUT_VERSION: ${{ github.event.inputs.version }}
+        with:
+          ref: ${{ github.event.inputs.commit }}
 
       - name: Push tag
         run: |
-          git tag ${INPUT_EXTENSION}/${INPUT_VERSION} INPUT_COMMIT
-          git push origin ${INPUT_EXTENSION}/${INPUT_VERSION}
-        env:
-          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
-          INPUT_VERSION: ${{ github.event.inputs.version }}
-          INPUT_COMMIT: ${{ github.event.inputs.commit }}
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+
+      - name: Output tag
+        run: |
+          echo $TAG_NAME > $ARTIFACT_FILE
+          cat $ARTIFACT_FILE
+
+      - name: Upload tag name as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tag-artifact
+          path: $ARTIFACT_FILE
