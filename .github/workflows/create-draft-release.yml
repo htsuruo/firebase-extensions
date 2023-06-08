@@ -1,0 +1,11 @@
+name: Create release note as draft
+
+on:
+  workflow_run:
+    workflows: [push-tag]
+    types: [completed]
+
+jobs:
+  create-draft-release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest

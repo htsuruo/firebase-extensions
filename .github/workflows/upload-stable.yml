@@ -1,0 +1,78 @@
+name: Upload extension to stable stage
+
+on:
+  workflow_dispatch:
+    inputs:
+      extension:
+        type: choice
+        options:
+          - 'back-up-firestore-to-storage'
+          - 'trigger-github-issues-from-crashlytics'
+        required: true
+        description: 'The name of the extension'
+      version:
+        type: string
+        required: true
+        description: 'The version of the extension'
+      commit:
+        type: string
+        required: false
+        description: 'Target the commit id (Defaults to HEAD)'
+
+jobs:
+  push-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Print inputs
+        run: echo "${INPUT_EXTENSION}/${INPUT_VERSION}"
+        env:
+          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+
+      - name: Push tag
+        run: |
+          git tag ${INPUT_EXTENSION}/${INPUT_VERSION} ${INPUT_COMMIT}
+          git push origin ${INPUT_EXTENSION}/${INPUT_VERSION}
+        env:
+          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+          INPUT_COMMIT: ${{ github.event.inputs.commit }}
+
+  upload:
+    env:
+      # ref. https://qiita.com/ojaru/items/7250bbfddd5b072596b5
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install firebase-tools
+        run: npm install -g firebase-tools
+
+      # 認証情報を保持するjsonファイルをGOOGLE_APPLICATION_CREDENTIALSで指定したpass(/tmp/credential.json)に生成
+      - name: Make GOOGLE_APPLICATION_CREDENTIALS
+        run: echo $GCLOUD_SERVICE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+
+      - name: Upload extension to stable stage
+        run: |
+          firebase ext:dev:upload htsuruo/${INPUT_EXTENSION} \
+            --repo https://github.com/HTsuruo/firebase-extensions \
+            --stage "stable" \
+            --root ${INPUT_EXTENSION} \
+            --ref ${INPUT_EXTENSION}/${INPUT_VERSION}
+        env:
+          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+
+      - name: Delete GOOGLE_APPLICATION_CREDENTIALS
+        run: rm $GOOGLE_APPLICATION_CREDENTIALS
+        if: ${{ always() }}
