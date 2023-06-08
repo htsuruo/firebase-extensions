@@ -1,4 +1,4 @@
-name: Push [extension]/[version] tag
+name: Push tag as `[extension]/[version]` format
 
 on:
   workflow_dispatch:
@@ -30,4 +30,7 @@ jobs:
 
       - uses: actions-ecosystem/action-push-tag@v1
         with:
-          tag: ${{ steps.bump-semver.outputs.new_version }}
+          tag: '${INPUT_EXTENSION}/${INPUT_VERSION}'
+        env:
+          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
