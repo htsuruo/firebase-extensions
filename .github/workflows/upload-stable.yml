@@ -22,24 +22,21 @@ on:
 jobs:
   push-tag:
     runs-on: ubuntu-latest
+    env:
+      TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.commit }}
 
-      - name: Print inputs
-        run: echo $EXTENSION/v$VERSION
-        env:
-          EXTENSION: ${{ github.event.inputs.extension }}
-          VERSION: ${{ github.event.inputs.version }}
+      - name: Print tag
+        run: echo $TAG_NAME
 
       - name: Push tag
         run: |
-          git tag $EXTENSION/v$VERSION $COMMIT
-          git push origin $EXTENSION/v$VERSION
-        env:
-          EXTENSION: ${{ github.event.inputs.extension }}
-          VERSION: ${{ github.event.inputs.version }}
-          COMMIT: ${{ github.event.inputs.commit }}
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
 
   upload:
     env:
