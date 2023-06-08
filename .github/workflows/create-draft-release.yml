@@ -1,0 +1,9 @@
+name: Create release note as draft
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  push-tag:
+    runs-on: ubuntu-latest

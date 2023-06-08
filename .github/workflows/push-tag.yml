@@ -1,0 +1,33 @@
+name: Push [extension]/[version] tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      extension:
+        type: choice
+        options:
+          - 'back-up-firestore-to-storage'
+          - 'trigger-github-issues-from-crashlytics'
+        required: true
+        description: 'The name of the extension'
+      version:
+        type: string
+        required: true
+        description: 'The version of the extension'
+
+jobs:
+  push-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Print inputs
+        run: echo "${INPUT_EXTENSION}/${INPUT_VERSION}"
+        env:
+          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
+          INPUT_VERSION: ${{ github.event.inputs.version }}
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
