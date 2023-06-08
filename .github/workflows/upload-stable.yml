@@ -27,15 +27,15 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Print inputs
-        run: echo $EXTENSION/$VERSION
+        run: echo $EXTENSION/v$VERSION
         env:
           EXTENSION: ${{ github.event.inputs.extension }}
           VERSION: ${{ github.event.inputs.version }}
 
       - name: Push tag
         run: |
-          git tag $EXTENSION/$VERSION $COMMIT
-          git push origin $EXTENSION/$VERSION
+          git tag $EXTENSION/v$VERSION $COMMIT
+          git push origin $EXTENSION/v$VERSION
         env:
           EXTENSION: ${{ github.event.inputs.extension }}
           VERSION: ${{ github.event.inputs.version }}
@@ -68,7 +68,7 @@ jobs:
             --repo https://github.com/HTsuruo/firebase-extensions \
             --stage "beta" \
             --root $EXTENSION \
-            --ref $EXTENSION/$VERSION
+            --ref $EXTENSION/v$VERSION
         env:
           EXTENSION: ${{ github.event.inputs.extension }}
           VERSION: ${{ github.event.inputs.version }}
