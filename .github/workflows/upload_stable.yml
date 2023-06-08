@@ -1,0 +1,44 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Upload stable
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  upload:
+    env:
+      # ref. https://qiita.com/ojaru/items/7250bbfddd5b072596b5
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install firebase-tools
+        run: npm install -g firebase-tools
+
+      # 認証情報を保持するjsonファイルをGOOGLE_APPLICATION_CREDENTIALSで指定したpass(/tmp/credential.json)に生成
+      - name: Make GOOGLE_APPLICATION_CREDENTIALS
+        run: echo $GCLOUD_SERVICE_KEY | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS
+
+      - name: Upload extension to stable stage
+        run: >
+          firebase ext:dev:upload htsuruo/back-up-firestore-to-storage \
+            --repo https://github.com/HTsuruo/firebase-extensions \
+            --stage "stable" \
+            --root back-up-firestore-to-storage \
+            --ref back-up-firestore-to-storage/v0.0.2
+
+      - name: Delete GOOGLE_APPLICATION_CREDENTIALS
+        run: rm $GOOGLE_APPLICATION_CREDENTIALS
+        if: ${{ always() }}
