@@ -35,7 +35,7 @@ jobs:
       - name: Push tag
         run: |
           git tag ${INPUT_EXTENSION}/${INPUT_VERSION} INPUT_COMMIT
-          git push origin refs/tags ${INPUT_EXTENSION}/${INPUT_VERSION}
+          git push origin ${INPUT_EXTENSION}/${INPUT_VERSION}
         env:
           INPUT_EXTENSION: ${{ github.event.inputs.extension }}
           INPUT_VERSION: ${{ github.event.inputs.version }}
