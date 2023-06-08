@@ -27,19 +27,19 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Print inputs
-        run: echo "${INPUT_EXTENSION}/${INPUT_VERSION}"
+        run: echo $EXTENSION/$VERSION
         env:
-          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
-          INPUT_VERSION: ${{ github.event.inputs.version }}
+          EXTENSION: ${{ github.event.inputs.extension }}
+          VERSION: ${{ github.event.inputs.version }}
 
       - name: Push tag
         run: |
-          git tag ${INPUT_EXTENSION}/${INPUT_VERSION} ${INPUT_COMMIT}
-          git push origin ${INPUT_EXTENSION}/${INPUT_VERSION}
+          git tag $EXTENSION/$VERSION $COMMIT
+          git push origin $EXTENSION/$VERSION
         env:
-          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
-          INPUT_VERSION: ${{ github.event.inputs.version }}
-          INPUT_COMMIT: ${{ github.event.inputs.commit }}
+          EXTENSION: ${{ github.event.inputs.extension }}
+          VERSION: ${{ github.event.inputs.version }}
+          COMMIT: ${{ github.event.inputs.commit }}
 
   upload:
     env:
@@ -64,14 +64,14 @@ jobs:
 
       - name: Upload extension to stable stage
         run: |
-          firebase ext:dev:upload htsuruo/${INPUT_EXTENSION} \
+          firebase ext:dev:upload htsuruo/$EXTENSION \
             --repo https://github.com/HTsuruo/firebase-extensions \
-            --stage "stable" \
-            --root ${INPUT_EXTENSION} \
-            --ref ${INPUT_EXTENSION}/${INPUT_VERSION}
+            --stage "beta" \
+            --root $EXTENSION \
+            --ref $EXTENSION/$VERSION
         env:
-          INPUT_EXTENSION: ${{ github.event.inputs.extension }}
-          INPUT_VERSION: ${{ github.event.inputs.version }}
+          EXTENSION: ${{ github.event.inputs.extension }}
+          VERSION: ${{ github.event.inputs.version }}
 
       - name: Delete GOOGLE_APPLICATION_CREDENTIALS
         run: rm $GOOGLE_APPLICATION_CREDENTIALS
