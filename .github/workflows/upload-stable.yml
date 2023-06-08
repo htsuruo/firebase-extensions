@@ -2,7 +2,7 @@ name: Upload extension to stable stage
 
 on:
   workflow_run:
-    workflows: [push-tag]
+    workflows: [Push tag]
     types: [completed]
 
 jobs:

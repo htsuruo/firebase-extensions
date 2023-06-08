@@ -46,4 +46,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tag-artifact
+          # ここでは環境変数の参照はできないのでベタ指定
           path: /tmp/tag.txt
