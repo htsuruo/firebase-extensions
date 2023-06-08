@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tag-artifact
-          path: $ARTIFACT_FILE
+          path: /tmp/tag.txt
