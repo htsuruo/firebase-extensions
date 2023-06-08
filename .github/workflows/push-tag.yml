@@ -38,6 +38,7 @@ jobs:
 
       - name: Output tag
         run: |
+          mkdir -p tmp
           echo $TAG_NAME > $ARTIFACT_FILE
           cat $ARTIFACT_FILE
 
