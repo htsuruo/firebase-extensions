@@ -22,6 +22,8 @@ on:
 jobs:
   push-tag:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
 
