@@ -12,8 +12,9 @@ dayjs.extend(timezone)
 export function formatTimestamp(params: {
   timestamp: string
   timeZone?: string
+  format?: string
 }) {
   return dayjs(params.timestamp)
     .tz(params.timeZone)
-    .format('YYYY-MM-DDTHH:mm:ss_SSS')
+    .format(params.format ?? 'YYYY-MM-DDTHH:mm:ss_SSS')
 }

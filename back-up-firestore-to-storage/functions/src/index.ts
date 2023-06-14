@@ -23,6 +23,7 @@ exports.backupTransaction = pubsub
     outputUriPrefix += `/${formatTimestamp({
       timestamp: context.timestamp,
       timeZone: process.env.TIME_ZONE,
+      format: process.env.TIMESTAMP_FORMAT,
     })}`
 
     try {
