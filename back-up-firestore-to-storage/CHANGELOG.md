@@ -1,3 +1,7 @@
+## Version 0.0.4
+
+- Add optional timestamp format parameter
+
 ## Version 0.0.3
 
 - Update docs
