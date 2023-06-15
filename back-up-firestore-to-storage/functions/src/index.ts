@@ -27,7 +27,6 @@ exports.backupTransaction = pubsub
     })}`
 
     try {
-      // await createBucketIfNotFound(bucketName)
       await client.exportDocuments({
         name: databaseName,
         collectionIds: process.env.COLLECTION_IDS?.split(','),
@@ -41,24 +40,3 @@ exports.backupTransaction = pubsub
       throw new HttpsError('internal', '🚨 Backup operation failed.')
     }
   })
-
-// TODO(tsuruoka): バケット作成のAPIを叩いているはずが`ApiError: Not Implemented`となり作成できない問題
-// そもそもバケットの作成については最上位権限の`storage.admin`のIAM roleが必要なので、このためだけに付与するのはセキュリティ的には微妙な気がしている
-// 利用者側にセットアップしてもらうほうが良い気がしている。
-
-// Check if the bucket exists and create it if not
-//
-// The reason why we need to use googleapis instead of firebase-admin SDK is
-// Cloud Storage for Firebase does not support `Bucket` APIs.
-// ref. https://firebase.google.com/docs/emulator-suite/connect_storage#differences_from_google_cloud_storage
-// async function createBucketIfNotFound(bucketName: string) {
-//   const bucket = storage.bucket(bucketName)
-//   const [exists] = await bucket.exists()
-//   if (!exists) {
-//     const [bucket] = await storage.createBucket(bucketName, {
-//       location: process.env.LOCATION,
-//       coldline: true,
-//     })
-//     logger.info(`${bucket.name} created with coldline in ${location}`)
-//   }
-// }
