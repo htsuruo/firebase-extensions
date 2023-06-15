@@ -1,8 +1,34 @@
 import { expect } from 'chai'
 import { describe, it } from 'mocha'
+import { formatTimestamp } from '../src/format'
+import * as dayjs from 'dayjs'
 
-describe('greet-the-world', () => {
-  it('1 + 1 should be 2', () => {
-    expect(1 + 1).to.equal(2)
+const defaultFormat = 'YYYY-MM-DDTHH:mm:ss_SSS'
+
+describe('formatTimestamp function test', () => {
+  const date = new Date()
+  const iso = date.toISOString()
+  it('format parameter is undefined: YYYY-MM-DDTHH:mm:ss_SSS', () => {
+    expect(formatTimestamp({ timestamp: iso })).to.equal(
+      dayjs(date).format(defaultFormat)
+    )
+  })
+  it('format parameter: YYYY-MM-DD', () => {
+    const format = 'YYYY-MM-DD'
+    expect(formatTimestamp({ timestamp: iso, format })).to.equal(
+      dayjs(date).format(format)
+    )
+  })
+  it('format parameter: YYYY-MM-DD_HH_mm_ss', () => {
+    const format = 'YYYY-MM-DD_HH_mm_ss'
+    expect(formatTimestamp({ timestamp: iso, format })).to.equal(
+      dayjs(date).format(format)
+    )
+  })
+  // Cannot detect invalid format string…
+  it('format parameter is invalid: INVALID_STRING', () => {
+    expect(
+      formatTimestamp({ timestamp: iso, format: 'INVALID_STRING' })
+    ).to.equal(dayjs(date).format('INVALID_STRING'))
   })
 })
