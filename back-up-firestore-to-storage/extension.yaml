@@ -1,7 +1,7 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 name: back-up-firestore-to-storage
-version: 0.0.3
+version: 0.0.4
 specVersion: v1beta
 license: Apache-2.0
 billingRequired: true
@@ -77,6 +77,14 @@ params:
     type: string
     example: 'every day 00:00'
     required: true
+
+  - param: TIMESTAMP_FORMAT
+    label: The timestamp format for path name to export.
+    description: >-
+      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, ensure uniqueness by considering the value of the SCHEDULE parameter"
+    type: string
+    example: YYYY-MM-DDTHH:mm:ss_SSS
+    required: false
 
   - param: TIME_ZONE
     label: The time zone in which the schedule will run (Defaults to UTC).

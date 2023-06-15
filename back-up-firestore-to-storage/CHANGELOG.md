@@ -1,3 +1,7 @@
+## Version 0.0.4
+
+- Add optional `TIMESTAMP_FORMAT` parameter for object path (folder) name to export
+
 ## Version 0.0.3
 
 - Update docs
