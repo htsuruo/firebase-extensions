@@ -1,6 +1,6 @@
 ## Version 0.0.4
 
-- Add optional timestamp format parameter
+- Add optional `TIMESTAMP_FORMAT` parameter for export folder name
 
 ## Version 0.0.3
 
