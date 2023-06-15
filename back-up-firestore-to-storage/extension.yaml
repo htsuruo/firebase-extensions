@@ -79,7 +79,7 @@ params:
     required: true
 
   - param: TIMESTAMP_FORMAT
-    label: The timestamp format for object to export.
+    label: The timestamp format for folder name to export.
     description: >-
       If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, keep to be unique, taking into account the SCHEDULE parameter.
     type: string
