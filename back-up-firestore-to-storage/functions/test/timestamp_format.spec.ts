@@ -19,8 +19,8 @@ describe('formatTimestamp function test', () => {
       dayjs(date).format(format)
     )
   })
-  it('format parameter: YYYY-MM-DD_HH_mm_ss', () => {
-    const format = 'YYYY-MM-DD_HH_mm_ss'
+  it('format parameter: YYYY-MM-DDTHH:mm:ssZ[Z]', () => {
+    const format = 'YYYY-MM-DDTHH:mm:ssZ[Z]'
     expect(formatTimestamp({ timestamp: iso, format })).to.equal(
       dayjs(date).format(format)
     )
