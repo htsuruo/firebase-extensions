@@ -81,8 +81,9 @@ params:
   - param: TIMESTAMP_FORMAT
     label: The timestamp format for path name to export.
     description: >-
-      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, keep to be unique, taking into account the SCHEDULE parameter.
+      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, keep to be unique, taking into account the SCHEDULE parameter
     type: string
+    example: YYYY-MM-DDTHH:mm:ss_SSS
     required: false
 
   - param: TIME_ZONE

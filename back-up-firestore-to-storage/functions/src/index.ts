@@ -13,6 +13,7 @@ const bucketName = process.env.BUCKET_NAME ?? process.env.STORAGE_BUCKET
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=en
 exports.backupTransaction = pubsub
   .schedule(`'${process.env.SCHEDULE!}'`)
+  // .retryConfig({ retryCount: 1 })
   .onRun(async (context) => {
     let outputUriPrefix = `gs://${bucketName}`
 
@@ -41,13 +42,13 @@ async function exportDocuments(params: {
       outputUriPrefix: outputUriPrefix,
     })
     logger.info(`✅ Backup ${databaseName} to ${outputUriPrefix} successfully.`)
-  } catch (error) {
-    if (error instanceof HttpsError) {
-      logger.info(`${error.code}: ${error.message}: ${error.details}`)
-      if (retryIfAlreadyExists && error.code === 'invalid-argument') {
-        retryWithUniqueSuffix(outputUriPrefix)
-        return
-      }
+  } catch (error: any) {
+    if (
+      retryIfAlreadyExists &&
+      error.toString().includes('Path already exists')
+    ) {
+      retryWithUniqueSuffix(outputUriPrefix)
+      return
     }
     logger.error(error, { structuredData: true })
     throw new HttpsError('internal', '🚨 Backup operation failed.')
@@ -56,9 +57,10 @@ async function exportDocuments(params: {
 
 // Avoid object path name collisions
 async function retryWithUniqueSuffix(outputUriPrefix: string) {
-  const additionalSuffix = generateUniqueString()
+  const newOutputUriPrefix = `${outputUriPrefix}-${generateUniqueString()}`
+  logger.info(`Retry to export: ${newOutputUriPrefix}`)
   await exportDocuments({
-    outputUriPrefix: `${outputUriPrefix}-${additionalSuffix}`,
+    outputUriPrefix: newOutputUriPrefix,
     retryIfAlreadyExists: false,
   })
 }
