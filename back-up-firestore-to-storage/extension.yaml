@@ -83,7 +83,6 @@ params:
     description: >-
       If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, ensure uniqueness by considering the value of the SCHEDULE parameter"
     type: string
-    example: YYYY-MM-DDTHH:mm:ss_SSS
     required: false
 
   - param: TIME_ZONE
