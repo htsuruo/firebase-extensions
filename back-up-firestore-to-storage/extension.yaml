@@ -88,7 +88,7 @@ params:
   - param: TIME_ZONE
     label: The time zone in which the schedule will run (Defaults to UTC).
     description: >-
-      Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
+      Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
     required: false
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
