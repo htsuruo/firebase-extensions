@@ -63,7 +63,7 @@ params:
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
     description: >-
-      - If not set, all collections will be backed up.
+      If not set, all collections will be backed up.
     type: string
     example: users,posts
     required: false
@@ -71,9 +71,9 @@ params:
   - param: SCHEDULE
     label: The frequency at which you want to execute the backup.
     description: >-
-      This field can accept strings that use either syntax:
-      - unix-cron syntax (for example, '5 11 * * *')
-      - App Engine syntax (for example, 'every 5 minutes')
+      - This field can accept strings that use either syntax:
+        - unix-cron syntax (for example, '5 11 * * *')
+        - App Engine syntax (for example, 'every 5 minutes')
     type: string
     example: 'every day 00:00'
     required: true
@@ -81,7 +81,7 @@ params:
   - param: TIMESTAMP_FORMAT
     label: The timestamp format for path name to export.
     description: >-
-      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, ensure uniqueness by considering the value of the frequency of backups.
+      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default.
     type: string
     required: false
 
