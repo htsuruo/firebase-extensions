@@ -1,3 +1,7 @@
+## Version 0.0.5
+
+- Fix the example of `TIMESTAMP_FORMAT` parameter
+
 ## Version 0.0.4
 
 - Add optional `TIMESTAMP_FORMAT` parameter for object path (folder) name to export
