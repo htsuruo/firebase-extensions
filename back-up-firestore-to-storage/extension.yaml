@@ -81,7 +81,7 @@ params:
   - param: TIMESTAMP_FORMAT
     label: The timestamp format for path name to export.
     description: >-
-      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default.
+      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. `YYYY-MM-DD` `HH:mm:ss_SSS`
     type: string
     required: false
 
