@@ -11,7 +11,7 @@ description: Exports Firestore documents to Cloud Storage at any scheduled time.
 icon: icon.png
 tags: [utilities]
 
-sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
+sourceUrl: https://github.com/HTsuruo/firebase-extensions
 
 author:
   authorName: Hideki TSURUOKA
