@@ -20,7 +20,9 @@ on:
         description: 'Target the commit id (Defaults to HEAD)'
 
 env:
+  TARGET: ${{ github.event.inputs.extension }}
   TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
+  VERSION_NUMBER: ${{ github.event.inputs.version }}
 
 jobs:
   push-tag:
@@ -35,8 +37,8 @@ jobs:
 
       - name: Push tag
         run: |
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
+          git tag  ${{ env.TAG_NAME }}
+          git push origin  ${{ env.TAG_NAME }}
 
   create-draft-release:
     needs: push-tag
@@ -49,29 +51,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      # ref. https://github.com/marketplace/actions/split-action
-      - uses: jungwinter/split@v2
-        id: split
-        with:
-          msg: ${{ env.TAG_NAME }}
-          separator: '/'
-
-      # ref. https://github.com/orgs/community/discussions/26686
-      - name: Get the tag name
-        id: tag-name
-        run: |
-          echo "Target tag name: ${{ env.TAG_NAME }}"
-          echo "target=${{ steps.split.outputs._0 }}" >> $GITHUB_OUTPUT
-          echo "version=${{ steps.split.outputs._1 }}" >> $GITHUB_OUTPUT
-
       - name: Extract the specific version CHANGELOG
         id: changelog
         # GITHUB_OUTPUTやGITHUB_ENVでは改行が扱えないので、一旦ファイルに書き出す
         run: |
           mkdir -p /tmp
           ($echo ./.github/script/extract_specific_changelog.sh \
-              --target=${{ steps.tag-name.outputs.target }} \
-              --version=${{ steps.tag-name.outputs.version }}) \
+              --target=${{ env.TARGET }} \
+              --version=${{ env.VERSION_NUMBER }}) \
             > /tmp/body.md
 
       - name: Show CHANGELOG
