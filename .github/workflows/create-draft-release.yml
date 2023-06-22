@@ -23,9 +23,31 @@ jobs:
 
       # ref. https://github.com/orgs/community/discussions/26686
       - name: Get the tag name
+        id: tag-name
         run: |
           echo "Target tag name: ${{  github.ref_name }}"
-          echo "target: ${{ steps.split.outputs._0 }}"
-          echo "version: ${{ steps.split.outputs._1 }}"
           echo "target=${{ steps.split.outputs._0 }}" >> $GITHUB_OUTPUT
           echo "version=${{ steps.split.outputs._1 }}" >> $GITHUB_OUTPUT
+
+      - name: Extract the specific version CHANGELOG
+        id: changelog
+        run: |
+          echo "body=\
+            ./.github/script/extract_specific_changelog.sh \
+            --target=${{ steps.tag-name.outputs.target }} \
+            --version=${{ steps.tag-name.outputs.version }}" \
+            >> $GITHUB_OUTPUT
+
+      - name: echo CHANGELOG
+        run: |
+          echo "CHANGELOG is: ${{  steps.changelog.outputs.body }}"
+
+      - name: Create draft release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{  github.ref_name }}
+          release_name: ${{  github.ref_name }}
+          draft: true
+          prerelease: false
