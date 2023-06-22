@@ -71,7 +71,7 @@ params:
     required: false
 
   - param: SCHEDULE
-    label: The frequency at which you want to execute the backup.
+    label: The frequency at which you want to execute the backup
     description: >-
       - This field can accept strings that use either syntax:
         - unix-cron syntax (for example, `5 11 * * *`)
@@ -81,7 +81,7 @@ params:
     required: true
 
   - param: TIMESTAMP_FORMAT
-    label: The timestamp format for path name to export.
+    label: The timestamp format for path name to export
     # デフォルトフォーマットの記述箇所はコードブロックではエスケープが想定通りに機能しないのでBoldにしています。
     # ref. https://github.com/HTsuruo/firebase-extensions/pull/9#issuecomment-1597340454
     description: >
@@ -90,7 +90,7 @@ params:
     required: false
 
   - param: TIME_ZONE
-    label: The time zone in which the schedule will run (Defaults to UTC).
+    label: The time zone in which the schedule will run (Defaults to UTC)
     description: >-
       Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
     required: false
