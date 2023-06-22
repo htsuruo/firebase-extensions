@@ -53,7 +53,7 @@ jobs:
       - uses: jungwinter/split@v2
         id: split
         with:
-          msg: $TAG_NAME
+          msg: '$TAG_NAME'
           separator: '/'
 
       # ref. https://github.com/orgs/community/discussions/26686
