@@ -57,7 +57,7 @@ params:
   - param: PREFIX_PATH
     label: Cloud Storage prefix path (not including heading slash, filename)
     description: >-
-      This is an optional Google Cloud Storage namespace path. Be sure to consider Google Cloud Storage naming guidelines: [About Cloud Storage buckets | Google Cloud](https://cloud.google.com/storage/docs/buckets#naming)
+      This is an optional Google Cloud Storage namespace path. Be sure to consider Google Cloud Storage naming guidelines: [About Cloud Storage buckets](https://cloud.google.com/storage/docs/buckets#naming)
     type: string
     example: firestore-backup
     required: false
@@ -82,8 +82,10 @@ params:
 
   - param: TIMESTAMP_FORMAT
     label: The timestamp format for path name to export.
+    # デフォルトフォーマットの記述箇所はコードブロックではエスケープが想定通りに機能しないのでBoldにしています。
+    # ref. https://github.com/HTsuruo/firebase-extensions/pull/9#issuecomment-1597340454
     description: >
-      If not set, `YYYY-MM-DDTHH\:mm:ss_SSS` is set as the default.
+      If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default.
     type: string
     required: false
 
