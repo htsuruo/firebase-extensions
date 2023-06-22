@@ -31,15 +31,17 @@ jobs:
 
       - name: Extract the specific version CHANGELOG
         id: changelog
+        # GITHUB_OUTPUTやGITHUB_ENVでは改行が扱えないので、一旦ファイルに書き出す
         run: |
           BODY=`./.github/script/extract_specific_changelog.sh \
             --target=back-up-firestore-to-storage \
             --version=0.0.5`
-          echo "body=$BODY" >> $GITHUB_OUTPUT
+          mkdir -p /tmp
+          echo $BODY > changelog.txt
 
       - name: echo CHANGELOG
         run: |
-          echo "CHANGELOG body: ${{  steps.changelog.outputs.body }}"
+          echo /tmp/changelog.txt
 
       - name: Create draft release
         uses: actions/create-release@v1
