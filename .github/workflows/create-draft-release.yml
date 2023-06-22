@@ -35,11 +35,11 @@ jobs:
         id: changelog
         # GITHUB_OUTPUTやGITHUB_ENVでは改行が扱えないので、一旦ファイルに書き出す
         run: |
-          BODY=`./.github/script/extract_specific_changelog.sh \
-            --target=back-up-firestore-to-storage \
-            --version=0.0.5`
           mkdir -p /tmp
-          echo $BODY > /tmp/body.md
+          ($echo ./.github/script/extract_specific_changelog.sh \
+              --target=back-up-firestore-to-storage \
+              --version=0.0.4) \
+            > /tmp/body.md
 
       - name: Show CHANGELOG
         run: |
