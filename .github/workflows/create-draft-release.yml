@@ -51,5 +51,6 @@ jobs:
         with:
           tag: ${{  github.ref_name }}
           bodyFile: /tmp/body.md
+          generateReleaseNotes: true
           draft: true
           prerelease: false
