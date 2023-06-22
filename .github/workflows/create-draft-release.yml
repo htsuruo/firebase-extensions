@@ -37,7 +37,7 @@ jobs:
             --target=back-up-firestore-to-storage \
             --version=0.0.5`
           mkdir -p /tmp
-          echo $BODY > changelog.txt
+          echo $BODY > /tmp/changelog.txt
 
       - name: Show CHANGELOG
         run: |
