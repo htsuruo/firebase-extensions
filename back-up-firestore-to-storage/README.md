@@ -42,17 +42,20 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 **Configuration Parameters:**
 
-* Cloud Storage bucket: If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
+* Cloud Storage bucket: If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before using this extension. Be sure to consider Google Cloud Storage naming guidelines: [Bucket names](https://cloud.google.com/storage/docs/buckets#naming)
 
-* Cloud Storage prefix path (not including heading slash, filename)
+* Cloud Storage prefix path (not including heading slash, filename): This is an optional Google Cloud Storage namespace path.
 
-* Firestore collection ids (separated by ','): - If not set, all collections will be backed up.
+* Firestore collection ids (separated by ','): Which collection ids to export. Unspecified means all collections.
 
-* The frequency at which you want to execute the backup.: This field can accept strings that use either syntax: - unix-cron syntax (for example, '5 11 * * *') - App Engine syntax (for example, 'every 5 minutes')
+* The frequency at which you want to execute the backup: - This field can accept strings that use either syntax:
+  - unix-cron syntax (for example, `5 11 * * *`)
+  - App Engine syntax (for example, `every 5 minutes`)
 
-* The timestamp format for path name to export.: If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, ensure uniqueness by considering the value of the SCHEDULE parameter"
+* The timestamp format for path name to export: If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default. This is same to the default folder name of `exportDocuments` API.
 
-* The time zone in which the schedule will run (Defaults to UTC).: Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
+
+* The time zone in which the schedule will run (Defaults to UTC): Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
 
 * Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 

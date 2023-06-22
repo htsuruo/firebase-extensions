@@ -1,7 +1,7 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 name: back-up-firestore-to-storage
-version: 0.0.4
+version: 0.0.5
 specVersion: v1beta
 license: Apache-2.0
 billingRequired: true
@@ -11,7 +11,7 @@ description: Exports Firestore documents to Cloud Storage at any scheduled time.
 icon: icon.png
 tags: [utilities]
 
-sourceUrl: https://github.com/HTsuruo/firebase-extensions/tree/main/extensions/backup-firestore-to-storage
+sourceUrl: https://github.com/HTsuruo/firebase-extensions
 
 author:
   authorName: Hideki TSURUOKA
@@ -50,12 +50,14 @@ params:
   - param: BUCKET_NAME
     label: Cloud Storage bucket
     description: >-
-      If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before before using this extension.
+      If not set, `[project-id].appspot.com` is set as the default. If set, the bucket must exist before using this extension. Be sure to consider Google Cloud Storage naming guidelines: [Bucket names](https://cloud.google.com/storage/docs/buckets#naming)
     type: string
     required: false
 
   - param: PREFIX_PATH
     label: Cloud Storage prefix path (not including heading slash, filename)
+    description: >-
+      This is an optional Google Cloud Storage namespace path.
     type: string
     example: firestore-backup
     required: false
@@ -63,33 +65,34 @@ params:
   - param: COLLECTION_IDS
     label: Firestore collection ids (separated by ',')
     description: >-
-      - If not set, all collections will be backed up.
+      Which collection ids to export. Unspecified means all collections.
     type: string
     example: users,posts
     required: false
 
   - param: SCHEDULE
-    label: The frequency at which you want to execute the backup.
+    label: The frequency at which you want to execute the backup
     description: >-
-      This field can accept strings that use either syntax:
-      - unix-cron syntax (for example, '5 11 * * *')
-      - App Engine syntax (for example, 'every 5 minutes')
+      - This field can accept strings that use either syntax:
+        - unix-cron syntax (for example, `5 11 * * *`)
+        - App Engine syntax (for example, `every 5 minutes`)
     type: string
     example: 'every day 00:00'
     required: true
 
   - param: TIMESTAMP_FORMAT
-    label: The timestamp format for path name to export.
-    description: >-
-      If not set, `YYYY-MM-DDTHH:mm:ss_SSS` is set as the default. If set, ensure uniqueness by considering the value of the SCHEDULE parameter"
+    label: The timestamp format for path name to export
+    # デフォルトフォーマットの記述箇所はコードブロックではエスケープが想定通りに機能しないのでBoldにしています。
+    # ref. https://github.com/HTsuruo/firebase-extensions/pull/9#issuecomment-1597340454
+    description: >
+      If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default. This is same to the default folder name of `exportDocuments` API.
     type: string
-    example: YYYY-MM-DDTHH:mm:ss_SSS
     required: false
 
   - param: TIME_ZONE
-    label: The time zone in which the schedule will run (Defaults to UTC).
+    label: The time zone in which the schedule will run (Defaults to UTC)
     description: >-
-      Refer to the [standardardized time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
+      Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
     required: false
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
