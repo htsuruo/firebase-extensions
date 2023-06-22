@@ -4,11 +4,15 @@ on:
   # GitHub Acrtions経由のタグプッシュでは`tags`がトリガーされないので、ワークフロートリガーにする
   # ref. https://www.memory-lovers.blog/entry/2022/11/20/180000
   workflow_run:
-    workflows: ['Push tag']
-    types: [completed]
+    workflows:
+      - Push tag
+    types:
+      - completed
 
 jobs:
   create-draft-release:
+    # イベント情報の詳細はJSONペイロード出力している以下の記事を見ると分かりやすい
+    # ref. https://swfz.hatenablog.com/entry/2022/04/24/183151
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
@@ -23,14 +27,14 @@ jobs:
       - uses: jungwinter/split@v2
         id: split
         with:
-          msg: ${{  github.ref_name }}
+          msg: ${{  github.event.workflow_run.head_branch }}
           separator: '/'
 
       # ref. https://github.com/orgs/community/discussions/26686
       - name: Get the tag name
         id: tag-name
         run: |
-          echo "Target tag name: ${{  github.ref_name }}"
+          echo "Target tag name: ${{  github.event.workflow_run.head_branch }}"
           echo "target=${{ steps.split.outputs._0 }}" >> $GITHUB_OUTPUT
           echo "version=${{ steps.split.outputs._1 }}" >> $GITHUB_OUTPUT
 
@@ -52,7 +56,7 @@ jobs:
       - name: Create draft release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{  github.ref_name }}
+          tag: ${{  github.event.workflow_run.head_branch }}
           bodyFile: /tmp/body.md
           generateReleaseNotes: true
           draft: true
