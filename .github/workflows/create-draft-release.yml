@@ -10,7 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: jungwinter/split@v2
+        id: split
+        with:
+          msg: ${{  github.ref_name }}
+
       # ref. https://github.com/orgs/community/discussions/26686
-      - name: GitHub Tag Name example
+      - name: Get the tag name
         run: |
           echo "Target tag name: ${{  github.ref_name }}"
+          echo "target: ${{ steps.split.outputs._0 }}"
+          echo "version: ${{ steps.split.outputs._1 }}"
+          echo "target=${{ steps.split.outputs._0 }}" >> $GITHUB_OUTPUT
+          echo "version=${{ steps.split.outputs._1 }}" >> $GITHUB_OUTPUT
