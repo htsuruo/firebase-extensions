@@ -32,10 +32,9 @@ jobs:
 
       # ワークフローAのアーティファクトからタグを取得する手順
       - name: Download tag artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: tag-artifact
-          path: /tmp/tag_name.txt
 
       # ダウンロードしたタグを表示する手順
       - name: Display tag
