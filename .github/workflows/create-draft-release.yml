@@ -30,6 +30,17 @@ jobs:
           msg: ${{  github.event.workflow_run.head_branch }}
           separator: '/'
 
+      # ワークフローAのアーティファクトからタグを取得する手順
+      - name: Download tag artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tag-artifact
+          path: /tmp/tag_name.txt
+
+      # ダウンロードしたタグを表示する手順
+      - name: Display tag
+        run: cat /tmp/tag_name.txt
+
       # ref. https://github.com/orgs/community/discussions/26686
       - name: Get the tag name
         id: tag-name
