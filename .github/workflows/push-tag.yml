@@ -39,9 +39,12 @@ jobs:
 
       # `create-draft-release`ではタグ名を取得する方法が無い（ワークフロー経由のプッシュタグは発火しない）ので
       # アーティファクト経由で渡す
-      - run: mkdir -p /tmp
+      - name: Create tag name file
+        run: |
+          mkdir -p /tmp
+          echo $TAG_NAME > /tmp/tag_name.txt
       - name: Upload tag artifact
         uses: actions/upload-artifact@v2
         with:
           name: tag-artifact
-          path: echo $TAG_NAME > /tmp/tag_name.txt
+          path: /tmp/tag_name.txt
