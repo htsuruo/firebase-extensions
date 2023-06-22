@@ -33,14 +33,14 @@ jobs:
         id: changelog
         run: |
           echo "body=\
-            ./.github/script/extract_specific_changelog.sh \
+            $(echo ./.github/script/extract_specific_changelog.sh \
             --target=${{ steps.tag-name.outputs.target }} \
-            --version=${{ steps.tag-name.outputs.version }}" \
+            --version=${{ steps.tag-name.outputs.version }})" \
             >> $GITHUB_OUTPUT
 
       - name: echo CHANGELOG
         run: |
-          echo "CHANGELOG is: ${{  steps.changelog.outputs.body }}"
+          echo "CHANGELOG body: ${{  steps.changelog.outputs.body }}"
 
       - name: Create draft release
         uses: actions/create-release@v1
