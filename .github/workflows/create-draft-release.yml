@@ -37,8 +37,8 @@ jobs:
         run: |
           mkdir -p /tmp
           ($echo ./.github/script/extract_specific_changelog.sh \
-              --target=back-up-firestore-to-storage \
-              --version=0.0.4) \
+              --target=${{ steps.tag-name.outputs.target }} \
+              --version=${{ steps.tag-name.outputs.version }}) \
             > /tmp/body.md
 
       - name: Show CHANGELOG
