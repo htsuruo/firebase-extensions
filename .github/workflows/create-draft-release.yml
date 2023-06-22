@@ -39,11 +39,11 @@ jobs:
             --target=back-up-firestore-to-storage \
             --version=0.0.5`
           mkdir -p /tmp
-          echo $BODY > /tmp/changelog.txt
+          echo $BODY > /tmp/body.md
 
       - name: Show CHANGELOG
         run: |
-          cat /tmp/changelog.txt
+          cat /tmp/body.md
 
       - name: Create draft release
         uses: actions/create-release@v1
