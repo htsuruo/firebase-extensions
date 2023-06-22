@@ -39,9 +39,9 @@ jobs:
           mkdir -p /tmp
           echo $BODY > changelog.txt
 
-      - name: echo CHANGELOG
+      - name: Show CHANGELOG
         run: |
-          echo /tmp/changelog.txt
+          cat /tmp/changelog.txt
 
       - name: Create draft release
         uses: actions/create-release@v1
