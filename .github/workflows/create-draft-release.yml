@@ -30,11 +30,11 @@ jobs:
           msg: ${{  github.event.workflow_run.head_branch }}
           separator: '/'
 
-      # ワークフローAのアーティファクトからタグを取得する手順
-      - name: Download tag artifact
-        uses: actions/download-artifact@v3
+      # ref. https://github.com/dawidd6/action-download-artifact
+      - name: Download tag artifact from another workflow
+        uses: dawidd6/action-download-artifact@v2
         with:
-          name: tag-artifact
+          run_id: ${{ github.event.workflow_run.id }}
 
       # ダウンロードしたタグを表示する手順
       - name: Display tag
