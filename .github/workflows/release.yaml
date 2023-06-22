@@ -37,8 +37,8 @@ jobs:
 
       - name: Push tag
         run: |
-          git tag  ${{ env.TAG_NAME }}
-          git push origin  ${{ env.TAG_NAME }}
+          git tag ${{ env.TAG_NAME }}
+          git push origin ${{ env.TAG_NAME }}
 
   create-draft-release:
     needs: push-tag
