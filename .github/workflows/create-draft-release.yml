@@ -32,11 +32,10 @@ jobs:
       - name: Extract the specific version CHANGELOG
         id: changelog
         run: |
-          echo "body=\
-            $(echo ./.github/script/extract_specific_changelog.sh \
-            --target=${{ steps.tag-name.outputs.target }} \
-            --version=${{ steps.tag-name.outputs.version }})" \
-            >> $GITHUB_OUTPUT
+          BODY=`./.github/script/extract_specific_changelog.sh \
+            --target=back-up-firestore-to-storage \
+            --version=0.0.5`
+          echo "body=$BODY" >> $GITHUB_OUTPUT
 
       - name: echo CHANGELOG
         run: |
