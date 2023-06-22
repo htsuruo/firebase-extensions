@@ -14,10 +14,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      # ref. https://github.com/marketplace/actions/split-action
       - uses: jungwinter/split@v2
         id: split
         with:
           msg: ${{  github.ref_name }}
+          separator: '/'
 
       # ref. https://github.com/orgs/community/discussions/26686
       - name: Get the tag name
