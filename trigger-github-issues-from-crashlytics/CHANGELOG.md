@@ -1,6 +1,5 @@
 ## Version 0.0.3
 
-- hgoe
 - Refactor
 - Update docs
 

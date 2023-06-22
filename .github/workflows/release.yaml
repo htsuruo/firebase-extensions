@@ -21,8 +21,8 @@ on:
 
 env:
   TARGET: ${{ github.event.inputs.extension }}
-  TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
   VERSION_NUMBER: ${{ github.event.inputs.version }}
+  TAG_NAME: ${{ github.event.inputs.extension }}/v${{ github.event.inputs.version }}
 
 jobs:
   push-tag:
