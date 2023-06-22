@@ -52,7 +52,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
   - unix-cron syntax (for example, `5 11 * * *`)
   - App Engine syntax (for example, `every 5 minutes`)
 
-* The timestamp format for path name to export.: If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default.
+* The timestamp format for path name to export.: If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default. This is same to `exportDocuments` API default folder name.
 
 
 * The time zone in which the schedule will run (Defaults to UTC).: Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
