@@ -53,14 +53,14 @@ jobs:
       - uses: jungwinter/split@v2
         id: split
         with:
-          msg: '$TAG_NAME'
+          msg: ${{ env.TAG_NAME }}
           separator: '/'
 
       # ref. https://github.com/orgs/community/discussions/26686
       - name: Get the tag name
         id: tag-name
         run: |
-          echo "Target tag name: $TAG_NAME"
+          echo "Target tag name: ${{ env.TAG_NAME }}"
           echo "target=${{ steps.split.outputs._0 }}" >> $GITHUB_OUTPUT
           echo "version=${{ steps.split.outputs._1 }}" >> $GITHUB_OUTPUT
 
@@ -82,7 +82,7 @@ jobs:
       - name: Create draft release
         uses: ncipollo/release-action@v1
         with:
-          tag: $TAG_NAME
+          tag: ${{ env.TAG_NAME }}
           bodyFile: /tmp/body.md
           generateReleaseNotes: true
           draft: true
