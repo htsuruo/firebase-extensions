@@ -90,9 +90,9 @@ params:
     required: false
 
   - param: TIME_ZONE
-    label: The timezone in which the schedule will run (Defaults to UTC)
+    label: The time zone in which the schedule will run (Defaults to UTC)
     description: >-
-      Refer to the [Values for timezone](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
+      Refer to [this document](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
     required: false
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
