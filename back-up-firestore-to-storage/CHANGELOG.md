@@ -1,3 +1,7 @@
+## Version 0.0.6
+
+-
+
 ## Version 0.0.5
 
 - Fix the documentation of `TIMESTAMP_FORMAT` parameter by escaping
