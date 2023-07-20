@@ -1,7 +1,7 @@
 # https://firebase.google.com/docs/extensions/reference/extension-yaml
 
 name: back-up-firestore-to-storage
-version: 0.0.5
+version: 0.0.6
 specVersion: v1beta
 license: Apache-2.0
 billingRequired: true
@@ -14,7 +14,7 @@ tags: [utilities]
 sourceUrl: https://github.com/HTsuruo/firebase-extensions
 
 author:
-  authorName: Hideki TSURUOKA
+  authorName: Hideki Tsuruoka
   email: tsuru.dev@gmail.com
   url: https://github.com/HTsuruo
 
@@ -92,7 +92,7 @@ params:
   - param: TIME_ZONE
     label: The time zone in which the schedule will run (Defaults to UTC)
     description: >-
-      Refer to the [list of time zone abbreviations](https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations).
+      Refer to [this document](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
     required: false
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
