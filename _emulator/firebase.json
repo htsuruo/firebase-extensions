@@ -50,6 +50,7 @@
   },
   "extensions": {
     "trigger-github-issues-from-crashlytics": "../trigger-github-issues-from-crashlytics",
-    "back-up-firestore-to-storage": "../back-up-firestore-to-storage/"
+    "back-up-firestore-to-storage": "../back-up-firestore-to-storage/",
+    "greet-the-world": "../sample-extension"
   }
 }
