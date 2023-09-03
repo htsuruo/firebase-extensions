@@ -40,7 +40,7 @@ resources:
     properties:
       location: ${LOCATION}
       scheduleTrigger:
-        schedule: ${SCHEDULE}
+        schedule: '${SCHEDULE}'
         timeZone: ${TIME_ZONE}
       runtime: nodejs18
       timeout: 540s
