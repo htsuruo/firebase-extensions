@@ -38,10 +38,10 @@ resources:
     description: >-
       Schedule triggered function that executes backup Firestore to Cloud Storage
     properties:
-      location: ${LOCATION}
+      location: ${param:LOCATION}
       scheduleTrigger:
-        schedule: '${SCHEDULE}'
-        timeZone: ${TIME_ZONE}
+        schedule: '${param:SCHEDULE}'
+        timeZone: ${param:TIME_ZONE}
       runtime: nodejs18
       timeout: 540s
 
