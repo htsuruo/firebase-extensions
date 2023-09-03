@@ -11,12 +11,12 @@ description: Exports Firestore documents to Cloud Storage at any scheduled time.
 icon: icon.png
 tags: [utilities]
 
-sourceUrl: https://github.com/HTsuruo/firebase-extensions
+sourceUrl: https://github.com/htsuruo/firebase-extensions
 
 author:
   authorName: Hideki Tsuruoka
   email: tsuru.dev@gmail.com
-  url: https://github.com/HTsuruo
+  url: https://github.com/htsuruo
 
 apis:
   # ref. https://firebase.google.com/docs/firestore/reference/rest/v1beta1/projects.databases/exportDocuments?hl=en
@@ -38,10 +38,10 @@ resources:
     description: >-
       Schedule triggered function that executes backup Firestore to Cloud Storage
     properties:
-      location: ${LOCATION}
+      location: ${param:LOCATION}
       scheduleTrigger:
-        schedule: ${SCHEDULE}
-        timeZone: ${TIME_ZONE}
+        schedule: '${param:SCHEDULE}'
+        timeZone: ${param:TIME_ZONE}
       runtime: nodejs18
       timeout: 540s
 
@@ -90,15 +90,16 @@ params:
     required: false
 
   - param: TIME_ZONE
-    label: The time zone in which the schedule will run (Defaults to UTC)
+    label: The time zone in which the schedule will run
     description: >-
       Refer to [this document](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
-    required: false
+    required: true
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
     # ref. https://www.debuggex.com/r/771ms2kxDLYJAz2N
     validationRegex: '^(UTC|[A-Za-z_]+/([A-Za-z_]+)*)$'
     example: 'Asia/Tokyo'
+    default: 'UTC'
 
   - param: LOCATION
     label: Cloud Functions location

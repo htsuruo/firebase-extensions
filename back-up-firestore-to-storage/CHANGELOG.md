@@ -1,5 +1,6 @@
 ## Version 0.0.6
 
+- Fix setting the default value of the `TIME_ZONE` parameter to UTC.
 - Update docs
 
 ## Version 0.0.5
