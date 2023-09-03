@@ -1,6 +1,6 @@
 # Trigger GitHub issues from Crashlytics
 
-**Author**: Hideki TSURUOKA (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
+**Author**: Hideki TSURUOKA (**[https://github.com/htsuruo](https://github.com/htsuruo)**)
 
 **Description**: Automatically creates GitHub Issues triggered by Crashlytics alerts.
 
@@ -17,7 +17,7 @@ The features of this extension are as follows:
 
 | Crashlytics Issue | GitHub Issue |
 |--------|--------|
-| <img width="900" alt="SCR-20230529-ukgw-2" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/d019c106-a2c2-4b76-b5f9-2327609fe3a0"> | <img width="970" alt="SCR-20230529-ukml" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/8eafcf03-a285-4067-b56f-36e378747758"> |
+| <img width="900" alt="SCR-20230529-ukgw-2" src="https://github.com/htsuruo/firebase-extensions/assets/12729025/d019c106-a2c2-4b76-b5f9-2327609fe3a0"> | <img width="970" alt="SCR-20230529-ukml" src="https://github.com/htsuruo/firebase-extensions/assets/12729025/8eafcf03-a285-4067-b56f-36e378747758"> |
 
 ## Supported crashlytics alerts
 
@@ -33,7 +33,7 @@ The features of this extension are as follows:
 
 ## Additional setup
 
-Before installing this extension, make sure that you've [created a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your GitHub account to access the GitHub API（if your repository is organization, use GitHub Apps). 
+Before installing this extension, make sure that you've [created a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) in your GitHub account to access the GitHub API（if your repository is organization, use GitHub Apps).
 
 Two approaches exist for creating access tokens, but `Fine-grained personal access tokens` are recommended.
 
@@ -42,7 +42,7 @@ Two approaches exist for creating access tokens, but `Fine-grained personal acce
 When creating a PAT (Personal Access Token), you need to give it the following permission:
 `repository permissions > Issues > Read and write`
 
-<img width="630" alt="SCR-20230527-ogal-2" src="https://github.com/HTsuruo/firebase-extensions/assets/12729025/719bcfd8-12c7-4336-adde-924738553592">
+<img width="630" alt="SCR-20230527-ogal-2" src="https://github.com/htsuruo/firebase-extensions/assets/12729025/719bcfd8-12c7-4336-adde-924738553592">
 
 ## Billing
 

@@ -83,7 +83,7 @@ params:
   - param: TIMESTAMP_FORMAT
     label: The timestamp format for path name to export
     # デフォルトフォーマットの記述箇所はコードブロックではエスケープが想定通りに機能しないのでBoldにしています。
-    # ref. https://github.com/HTsuruo/firebase-extensions/pull/9#issuecomment-1597340454
+    # ref. https://github.com/htsuruo/firebase-extensions/pull/9#issuecomment-1597340454
     description: >
       If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default. This is same to the default folder name of `exportDocuments` API.
     type: string

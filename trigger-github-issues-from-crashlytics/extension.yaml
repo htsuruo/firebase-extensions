@@ -11,14 +11,14 @@ icon: icon.png
 tags: [utilities]
 
 license: Apache-2.0
-sourceUrl: https://github.com/HTsuruo/firebase-extensions
+sourceUrl: https://github.com/htsuruo/firebase-extensions
 
 billingRequired: true
 
 author:
   authorName: Hideki TSURUOKA
   email: tsuru.dev@gmail.com
-  url: https://github.com/HTsuruo
+  url: https://github.com/htsuruo
 
 apis:
   - apiName: eventarc.googleapis.com
