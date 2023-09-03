@@ -1,6 +1,6 @@
 # Back up Firestore to Storage
 
-**Author**: Hideki Tsuruoka (**[https://github.com/HTsuruo](https://github.com/HTsuruo)**)
+**Author**: Hideki Tsuruoka (**[https://github.com/htsuruo](https://github.com/htsuruo)**)
 
 **Description**: Exports Firestore documents to Cloud Storage at any scheduled time.
 
@@ -49,7 +49,7 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 
 - The timestamp format for path name to export: If not set, **YYYY-MM-DDTHH\:mm:ss_SSS** is set as the default. This is same to the default folder name of `exportDocuments` API.
 
-- The time zone in which the schedule will run (Defaults to UTC): Refer to [this document](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
+- The time zone in which the schedule will run: Refer to [this document](https://cloud.google.com/looker/docs/reference/param-view-timezone-values).
 
 - Cloud Functions location: Where do you want to deploy the functions created for this extension? For help selecting a location, refer to the [location selection guide](https://firebase.google.com/docs/functions/locations).
 
