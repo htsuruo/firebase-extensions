@@ -1,3 +1,7 @@
+## Version 0.1.0
+
+- Change buckets parameter type to `selectResource`
+
 ## Version 0.0.6
 
 - Fix setting the default value of the `TIME_ZONE` parameter to UTC.

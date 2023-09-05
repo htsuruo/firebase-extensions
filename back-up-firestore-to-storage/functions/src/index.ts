@@ -8,7 +8,7 @@ const client = new v1.FirestoreAdminClient()
 // const storage = new Storage()
 const projectId = process.env.PROJECT_ID!
 const databaseName = client.databasePath(projectId, '(default)')
-const bucketName = process.env.BUCKET_NAME ?? process.env.STORAGE_BUCKET
+const bucketName = process.env.BUCKET_NAME!
 
 // ref. https://firebase.google.com/docs/firestore/solutions/schedule-export?hl=en
 exports.backupTransaction = pubsub
