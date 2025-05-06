@@ -1,0 +1,23 @@
+name: flutter_crashlytics_test
+description: 'A new Flutter project.'
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  firebase_core: ^3.13.0
+  firebase_crashlytics: ^4.3.5
+  flutter:
+    sdk: flutter
+  simple_logger: ^1.10.0
+  stack_trace: ^1.12.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic_mono: ^1.30.3
+
+flutter:
+  uses-material-design: true
