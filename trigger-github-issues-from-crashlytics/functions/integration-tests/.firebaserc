@@ -3,7 +3,9 @@
   "targets": {},
   "etags": {
     "extensions-dev-3867c": {
-      "extensionInstances": {}
+      "extensionInstances": {
+        "trigger-github-issues-from-crashlytics": "da66b802f6b8381d47f963035f35147e54eaa5f44cb8049f97fc1f20c941d2a5"
+      }
     }
   }
 }
