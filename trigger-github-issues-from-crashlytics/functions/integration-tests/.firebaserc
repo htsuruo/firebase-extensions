@@ -4,7 +4,7 @@
   "etags": {
     "extensions-dev-3867c": {
       "extensionInstances": {
-        "trigger-github-issues-from-crashlytics": "04bd1fe32227c072d99f9d55893cab20b51b0d5010f3b11e17be489ceb7a6535"
+        "trigger-github-issues-from-crashlytics": "d80c4cd63bceb816df374dda19115cd70cd70982533083471d5e579f4bb9e8b4"
       }
     }
   }
