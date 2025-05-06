@@ -1,7 +1,7 @@
-import { Octokit } from '@octokit/rest'
 import { RequestError } from '@octokit/request-error'
-import { CrashlyticsEvent } from 'firebase-functions/v2/alerts/crashlytics'
+import { Octokit } from '@octokit/rest'
 import { logger } from 'firebase-functions/v2'
+import { CrashlyticsEvent } from 'firebase-functions/v2/alerts/crashlytics'
 import { CrashlyticsAlert, CrashlyticsPayload } from './types'
 
 const octokit = new Octokit({
