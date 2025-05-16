@@ -1,7 +1,7 @@
-import { Octokit } from '@octokit/rest'
 import { RequestError } from '@octokit/request-error'
-import { CrashlyticsEvent } from 'firebase-functions/v2/alerts/crashlytics'
+import { Octokit } from '@octokit/rest'
 import { logger } from 'firebase-functions/v2'
+import { CrashlyticsEvent } from 'firebase-functions/v2/alerts/crashlytics'
 import { CrashlyticsAlert, CrashlyticsPayload } from './types'
 
 const octokit = new Octokit({
@@ -13,8 +13,9 @@ export async function createGitHubIssueIfEnabled<T extends CrashlyticsPayload>(
   event: CrashlyticsEvent<T>
 ) {
   const alertType = parseAlertType(event.alertType)
+  logger.info(`alertType: ${alertType}`, { structuredData: true })
   if (!process.env.ALERTS?.split(',').includes(alertType)) {
-    logger.info(
+    logger.warn(
       `Skip the creation of a GitHub issue because ${alertType} alert is not enabled`
     )
     return
