@@ -13,8 +13,9 @@ export async function createGitHubIssueIfEnabled<T extends CrashlyticsPayload>(
   event: CrashlyticsEvent<T>
 ) {
   const alertType = parseAlertType(event.alertType)
+  logger.info(`alertType: ${alertType}`, { structuredData: true })
   if (!process.env.ALERTS?.split(',').includes(alertType)) {
-    logger.info(
+    logger.warn(
       `Skip the creation of a GitHub issue because ${alertType} alert is not enabled`
     )
     return
