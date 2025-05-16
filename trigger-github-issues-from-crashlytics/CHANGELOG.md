@@ -1,3 +1,7 @@
+## Version 1.0.0
+
+- Update TextPayload schema
+
 ## Version 0.0.4
 
 - Update docs
