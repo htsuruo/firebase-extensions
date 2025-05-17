@@ -49,7 +49,7 @@ resources:
       New crashlytics fatal issue triggered function that creates GitHub Issues.
     properties:
       buildConfig:
-        runtime: nodejs18
+        runtime: nodejs22
       serviceConfig:
         availableMemory: 512M
       location: ${LOCATION}
@@ -66,7 +66,7 @@ resources:
       New crashlytics non-fatal issue triggered function that creates GitHub Issues.
     properties:
       buildConfig:
-        runtime: nodejs18
+        runtime: nodejs22
       serviceConfig:
         availableMemory: 512M
       location: ${LOCATION}
@@ -83,7 +83,7 @@ resources:
       New ANR issue triggered function that creates GitHub Issues.
     properties:
       buildConfig:
-        runtime: nodejs18
+        runtime: nodejs22
       serviceConfig:
         availableMemory: 512M
       location: ${LOCATION}
