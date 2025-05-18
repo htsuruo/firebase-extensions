@@ -18,6 +18,9 @@ const options: CrashlyticsOptions = {
   secrets: ['GITHUB_ACCESS_TOKEN'],
 }
 
+// 関数名は`4-63 characters`が制限なので、Extensionsの場合は以下の形式となるので簡素な名前をつけるのがベター
+// ext-trigger-github-issues-from-crashlytics-[FUNCTION_NAME]
+
 // New fatal issue
 exports.createFatalIssue = onNewFatalIssuePublished(options, (event) =>
   createGitHubIssueIfEnabled<NewFatalIssuePayload>(event)
@@ -34,6 +37,6 @@ exports.createAnrIssue = onNewAnrIssuePublished(options, (event) =>
 )
 
 // Regression(Better use for report debugging)
-exports.createRegressionAlert = onRegressionAlertPublished(options, (event) =>
+exports.regressionAlert = onRegressionAlertPublished(options, (event) =>
   createGitHubIssueIfEnabled<RegressionAlertPayload>(event)
 )

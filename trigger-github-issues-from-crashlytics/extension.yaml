@@ -94,7 +94,7 @@ resources:
           - attribute: alerttype
             value: crashlytics.newAnrIssue
 
-  - name: createRegressionAlert
+  - name: regressionAlert
     type: firebaseextensions.v1beta.v2function
     description: >-
       Regression alert triggered function that creates GitHub Issues.
