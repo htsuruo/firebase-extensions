@@ -2,12 +2,14 @@
 // ref. https://firebase.google.com/docs/extensions/publishers/functions#crashlytics
 import {
   CrashlyticsOptions,
-  onNewFatalIssuePublished,
-  onNewNonfatalIssuePublished,
-  onNewAnrIssuePublished,
+  NewAnrIssuePayload,
   NewFatalIssuePayload,
   NewNonfatalIssuePayload,
-  NewAnrIssuePayload,
+  onNewAnrIssuePublished,
+  onNewFatalIssuePublished,
+  onNewNonfatalIssuePublished,
+  onRegressionAlertPublished,
+  RegressionAlertPayload,
 } from 'firebase-functions/v2/alerts/crashlytics'
 import { createGitHubIssueIfEnabled } from './github_api'
 
@@ -29,4 +31,9 @@ exports.createNonFatalIssue = onNewNonfatalIssuePublished(options, (event) =>
 // New ANR issue
 exports.createAnrIssue = onNewAnrIssuePublished(options, (event) =>
   createGitHubIssueIfEnabled<NewAnrIssuePayload>(event)
+)
+
+// Regression(Better use for report debugging)
+exports.regression = onRegressionAlertPublished(options, (event) =>
+  createGitHubIssueIfEnabled<RegressionAlertPayload>(event)
 )
