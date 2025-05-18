@@ -45,7 +45,7 @@ export async function createGitHubIssueIfEnabled<T extends CrashlyticsPayload>(
 
 function makeBody<T extends CrashlyticsPayload>(event: CrashlyticsEvent<T>) {
   logger.info(event, { structuredData: true })
-  const issue = event.data.payload.issue
+  const { id, subtitle, appVersion } = event.data.payload.issue
   const alertType = parseAlertType(event.alertType)
   // TODO(tsuruoka): 本来はURLリンクを載せたいものの、`packageName`が取得できず`appId`のみなのでURLを生成できない問題
   // フォーマットは以下であることを確認したので、`packageName`が取得できるようになったらURLも表示できる
@@ -53,14 +53,14 @@ function makeBody<T extends CrashlyticsPayload>(event: CrashlyticsEvent<T>) {
   const appId = event.appId
 
   return `
-  ### ${issue.subtitle}
+  ### ${subtitle}
 
   | Info | Value |
   |--------|--------|
   | appId | ${appId} |
   | alertType | ${alertType} |
-  | id | ${issue.id} |
-  | appVersion | ${issue.appVersion} |
+  | id | ${id} |
+  | appVersion | ${appVersion} |
   `
 }
 
