@@ -94,6 +94,23 @@ resources:
           - attribute: alerttype
             value: crashlytics.newAnrIssue
 
+  - name: createRegressionAlert
+    type: firebaseextensions.v1beta.v2function
+    description: >-
+      Regression alert triggered function that creates GitHub Issues.
+    properties:
+      buildConfig:
+        runtime: nodejs22
+      serviceConfig:
+        availableMemory: 512M
+      location: ${LOCATION}
+      eventTrigger:
+        eventType: google.firebase.firebasealerts.alerts.v1.published
+        triggerRegion: global
+        eventFilters:
+          - attribute: alerttype
+            value: crashlytics.regression
+
 # In the `params` field, set up your extension's user-configured parameters.
 # Learn more in the docs:
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
@@ -136,6 +153,8 @@ params:
         value: newNonfatalIssue
       - label: New ANR Issue
         value: newAnrIssue
+      - label: Regression Alert
+        value: regression
 
   - param: LOCATION
     label: Cloud Functions location

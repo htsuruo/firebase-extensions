@@ -34,6 +34,6 @@ exports.createAnrIssue = onNewAnrIssuePublished(options, (event) =>
 )
 
 // Regression(Better use for report debugging)
-exports.regression = onRegressionAlertPublished(options, (event) =>
+exports.createRegressionAlert = onRegressionAlertPublished(options, (event) =>
   createGitHubIssueIfEnabled<RegressionAlertPayload>(event)
 )
