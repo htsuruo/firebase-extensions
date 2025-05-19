@@ -1,6 +1,8 @@
 ## Version 1.0.0
 
-- Update TextPayload schema
+- Add new trigger from `regression` alert
+- Update runtime to `nodejs22`
+- Update docs
 
 ## Version 0.0.4
 
