@@ -43,6 +43,31 @@ export async function createGitHubIssueIfEnabled<T extends CrashlyticsPayload>(
   }
 }
 
+// Examople payload
+// {
+//   id: '2262421223909713056',
+//   appid: '1:162074331013:android:f5830f1b7bf6ffd8ade6ec',
+//   type: 'google.firebase.firebasealerts.alerts.v1.published',
+//   alerttype: 'crashlytics.regression',
+//   source: '//firebasealerts.googleapis.com/projects/162074331013',
+//   project: '162074331013',
+//   specversion: '1.0',
+//   time: '2025-05-19T00:44:38.808893Z',
+//   data: {
+//     '@type': 'type.googleapis.com/google.events.firebase.firebasealerts.v1.AlertData',
+//     createTime: '2025-05-19T00:44:38.808893Z',
+//     endTime: '2025-05-19T00:44:38.808893Z',
+//     payload: {
+//       issue: [Object],
+//       '@type': 'type.googleapis.com/google.events.firebase.firebasealerts.v1.CrashlyticsRegressionAlertPayload',
+//       type: 'fatal',
+//       resolveTime: '2025-05-18T07:00:00Z'
+//     }
+//   },
+//   traceparent: '00-407a4a49f8d10296ddf36a791a38df95-6f41c394d4759033-01',
+//   alertType: 'crashlytics.regression',
+//   appId: '1:162074331013:android:f5830f1b7bf6ffd8ade6ec'
+// }
 function makeBody<T extends CrashlyticsPayload>(event: CrashlyticsEvent<T>) {
   logger.info(event, { structuredData: true })
   const { id, subtitle, appVersion } = event.data.payload.issue
