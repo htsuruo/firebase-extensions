@@ -1,6 +1,6 @@
 # Trigger GitHub issues from Crashlytics
 
-**Author**: Hideki TSURUOKA (**[https://github.com/htsuruo](https://github.com/htsuruo)**)
+**Author**: Hideki Tsuruoka (**[https://github.com/htsuruo](https://github.com/htsuruo)**)
 
 **Description**: Automatically creates GitHub Issues triggered by Crashlytics alerts.
 
@@ -73,6 +73,8 @@ When you use Firebase Extensions, you're only charged for the underlying resourc
 - createNonFatalIssue (firebaseextensions.v1beta.v2function)
 
 - createAnrIssue (firebaseextensions.v1beta.v2function)
+
+- regressionAlert (firebaseextensions.v1beta.v2function)
 
 **APIs Used**:
 
