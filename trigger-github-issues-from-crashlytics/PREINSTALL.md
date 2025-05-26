@@ -16,10 +16,10 @@ The features of this extension are as follows:
 - `crashlytics.newFatalIssue`: An event is sent when an application experiences a new fatal crash (not for any subsequent, identical events).
 - `crashlytics.newNonfatalIssue`: An event is sent when an application experiences a new non-fatal error (not for any subsequent, identical events).
 - `crashlytics.newAnrIssue`: An event is sent when an application experiences a new Application Not Responding (ANR) error (not for any subsequent, identical events).
+- `crashlytics.regression`: An event is sent when an application experiences a crash for an issue marked as closed for a previous application version.
 
 ### Not supported (Future work)
 
-- `crashlytics.regression`: An event is sent when an application experiences a crash for an issue marked as closed for a previous application version.
 - `crashlytics.stabilityDigest`: An event is sent when there is a notification of the top trending issues in Crashlytics.
 - `crashlytics.velocity`: An event is sent when a single issue is responsible for causing a significant number of application sessions to crash.
 
