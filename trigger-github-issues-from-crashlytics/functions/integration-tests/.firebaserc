@@ -1,0 +1,11 @@
+{
+  "projects": {},
+  "targets": {},
+  "etags": {
+    "extensions-dev-3867c": {
+      "extensionInstances": {
+        "trigger-github-issues-from-crashlytics": "8cf96cceb2e9df2be40c44ef16a34b34f409a764f6e915d1a2b6ed4d44ebce2d"
+      }
+    }
+  }
+}
