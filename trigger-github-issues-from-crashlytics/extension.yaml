@@ -144,7 +144,7 @@ params:
 
   - param: ALERTS
     label: The selection of alert type you want to trigger
-    type: multiselect
+    type: multiSelect
     required: true
     options:
       - label: New Fatal Issue
