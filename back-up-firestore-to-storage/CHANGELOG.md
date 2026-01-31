@@ -1,3 +1,8 @@
+## Version 0.1.1
+
+- Remove runtime-specific version `nodejs18`.
+  - The default is now the latest Node.js version currently supported by Cloud Functions.
+
 ## Version 0.1.0
 
 - Change buckets parameter type to `selectResource`
