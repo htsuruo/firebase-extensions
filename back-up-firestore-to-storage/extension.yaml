@@ -40,9 +40,8 @@ resources:
     properties:
       location: ${param:LOCATION}
       scheduleTrigger:
-        schedule: '${param:SCHEDULE}'
+        schedule: ${param:SCHEDULE}
         timeZone: ${param:TIME_ZONE}
-      runtime: nodejs18
       timeout: 540s
 
 # https://firebase.google.com/docs/extensions/reference/extension-yaml#params-field
@@ -78,7 +77,7 @@ params:
         - unix-cron syntax (for example, `5 11 * * *`)
         - App Engine syntax (for example, `every 5 minutes`)
     type: string
-    example: 'every day 00:00'
+    example: "every day 00:00"
     required: true
 
   - param: TIMESTAMP_FORMAT
@@ -98,9 +97,9 @@ params:
     # select形式では項目が多すぎて逆に選択の手間があるため、stringにした
     type: string
     # ref. https://www.debuggex.com/r/771ms2kxDLYJAz2N
-    validationRegex: '^(UTC|[A-Za-z_]+/([A-Za-z_]+)*)$'
-    example: 'Asia/Tokyo'
-    default: 'UTC'
+    validationRegex: "^(UTC|[A-Za-z_]+/([A-Za-z_]+)*)$"
+    example: "Asia/Tokyo"
+    default: "UTC"
 
   - param: LOCATION
     label: Cloud Functions location
